@@ -1,0 +1,22 @@
+# Godot 4+ specific ignores
+.godot/
+.nomedia
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Игнорировать .DS_Store файлы
+.DS_Store
+
+# Также можно добавить для вложенных папок
+**/.DS_Store
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
