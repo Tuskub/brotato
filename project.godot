@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="brotato"
+run/main_scene="uid://dy355015qgab6"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://autoloads/global.gd"
 
 [display]
 
