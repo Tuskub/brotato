@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://xoi5bf006vpc"]
+[gd_scene load_steps=9 format=3 uid="uid://xoi5bf006vpc"]
 
 [ext_resource type="Script" uid="uid://cekh3g6dfei1c" path="res://scenes/units/unit.gd" id="1_2cmji"]
 [ext_resource type="Texture2D" uid="uid://devt2xbk78rej" path="res://assets/sprites/shadow.png" id="1_oumpc"]
+[ext_resource type="PackedScene" uid="uid://bkyyic3okyjxx" path="res://scenes/components/hurtbox_component.tscn" id="3_cx6aj"]
 
 [sub_resource type="Animation" id="Animation_upwld"]
 length = 0.001
@@ -268,3 +269,5 @@ position = Vector2(0, -61)
 libraries = {
 &"": SubResource("AnimationLibrary_l7084")
 }
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("3_cx6aj")]

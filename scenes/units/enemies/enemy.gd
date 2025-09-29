@@ -7,13 +7,21 @@ class_name Enemy
 var can_move: bool = true
 
 func _process(delta: float) -> void:
+	update_animations()
+
 	if not can_move:
 		return
-		
+	
 	if not can_move_towards_player():
 		return
 	position += get_move_direction() * stats.speed * delta 
 	update_rotation()
+	
+func update_animations() -> void:
+	if can_move_towards_player() and can_move:
+		animation.play('move')
+	else:
+		animation.play('idle')
 
 func can_move_towards_player() -> bool:
 	return is_instance_valid(Global.player) and\
