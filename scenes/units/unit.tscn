@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://xoi5bf006vpc"]
+[gd_scene load_steps=10 format=3 uid="uid://xoi5bf006vpc"]
 
 [ext_resource type="Script" uid="uid://cekh3g6dfei1c" path="res://scenes/units/unit.gd" id="1_2cmji"]
 [ext_resource type="Texture2D" uid="uid://devt2xbk78rej" path="res://assets/sprites/shadow.png" id="1_oumpc"]
 [ext_resource type="PackedScene" uid="uid://bkyyic3okyjxx" path="res://scenes/components/hurtbox_component.tscn" id="3_cx6aj"]
+[ext_resource type="PackedScene" uid="uid://2ew7i6g3p0v8" path="res://scenes/components/health_component.tscn" id="4_6k8ya"]
 
 [sub_resource type="Animation" id="Animation_upwld"]
 length = 0.001
@@ -271,3 +272,7 @@ libraries = {
 }
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("3_cx6aj")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_6k8ya")]
+
+[connection signal="on_damaged" from="HurtboxComponent" to="." method="_on_hurtbox_component_on_damaged"]

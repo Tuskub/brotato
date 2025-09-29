@@ -16,6 +16,7 @@ var is_dash_available := true
 
 
 func _ready() -> void:
+	super._ready()
 	dash_timer.one_shot = true
 	dash_timer.wait_time = dash_duration
 	
