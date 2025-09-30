@@ -20,6 +20,11 @@ func _on_hurtbox_component_on_damaged(hitbox: HitboxComponent) -> void:
 	if health_component.current_health <= 0.0:
 		return
 	
+	var blocked := Global.get_chance_succes(stats.block_chance / 100)
+	if blocked:
+		print('blocked')
+		return
+	
 	set_flush_material()
 	health_component.take_damage(hitbox.damage)
 
