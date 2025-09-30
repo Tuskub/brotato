@@ -61,5 +61,13 @@ z_index = 1
 position = Vector2(0, -31)
 shape = SubResource("CircleShape2D_d3mmk")
 
+[node name="HealthBar" parent="." index="8"]
+offset_left = -48.0
+offset_top = -89.0
+offset_right = 48.0
+offset_bottom = -69.0
+back_color = Color(0.13725491, 0.019607844, 0.02745098, 1)
+fill_color = Color(1, 0.2901961, 0.45490196, 1)
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="TrailTimer" to="Visuals/Trail" method="_on_trail_timer_timeout"]

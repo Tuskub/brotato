@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://xoi5bf006vpc"]
+[gd_scene load_steps=11 format=3 uid="uid://xoi5bf006vpc"]
 
 [ext_resource type="Script" uid="uid://cekh3g6dfei1c" path="res://scenes/units/unit.gd" id="1_2cmji"]
 [ext_resource type="Texture2D" uid="uid://devt2xbk78rej" path="res://assets/sprites/shadow.png" id="1_oumpc"]
 [ext_resource type="PackedScene" uid="uid://bkyyic3okyjxx" path="res://scenes/components/hurtbox_component.tscn" id="3_cx6aj"]
 [ext_resource type="PackedScene" uid="uid://2ew7i6g3p0v8" path="res://scenes/components/health_component.tscn" id="4_6k8ya"]
+[ext_resource type="PackedScene" uid="uid://ifmw1e7gycc8" path="res://scenes/ui/health_bar.tscn" id="5_mgebg"]
 
 [sub_resource type="Animation" id="Animation_upwld"]
 length = 0.001
@@ -275,4 +276,16 @@ libraries = {
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_6k8ya")]
 
+[node name="HealthBar" parent="." instance=ExtResource("5_mgebg")]
+offset_left = -46.0
+offset_top = -90.0
+offset_right = 50.0
+offset_bottom = -70.0
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="on_damaged" from="HurtboxComponent" to="." method="_on_hurtbox_component_on_damaged"]
+[connection signal="on_health_changed" from="HealthComponent" to="HealthBar" method="_on_health_component_on_health_changed"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
