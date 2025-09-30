@@ -12,5 +12,5 @@ health_increase_pre_wave = 0.0
 damage = 3
 damege_increase_pre_wave = 0.0
 luck = 5.0
-block_chance = 1.0
+block_chance = 50.0
 metadata/_custom_type_script = "uid://brjn3a1k336sd"
