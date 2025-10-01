@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://bjd8ki1qmx7s8"]
+
+[ext_resource type="Script" uid="uid://b8a4mvry2f6tn" path="res://resources/items/weapons/weapon_stats.gd" id="1_x8btq"]
+
+[resource]
+script = ExtResource("1_x8btq")
+damage = 8.0
+max_range = 180.0
+knockback = 1.0
+accuracy = 1.0
+cooldown = 1.2
+metadata/_custom_type_script = "uid://b8a4mvry2f6tn"
