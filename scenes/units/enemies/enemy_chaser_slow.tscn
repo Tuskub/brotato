@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwiud4jd3uiwc"]
+[gd_scene load_steps=10 format=3 uid="uid://cwiud4jd3uiwc"]
 
 [ext_resource type="PackedScene" uid="uid://xoi5bf006vpc" path="res://scenes/units/unit.tscn" id="1_1c4c5"]
 [ext_resource type="Texture2D" uid="uid://d1ou504pylric" path="res://assets/sprites/Enemies/Enemy_1.png" id="2_k2x6u"]
@@ -11,6 +11,9 @@ radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a42d7"]
 radius = 150.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebrsu"]
+radius = 35.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_htoap"]
 radius = 37.0
@@ -37,6 +40,15 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" index="0"]
 position = Vector2(0, -61)
 shape = SubResource("CircleShape2D_a42d7")
+
+[node name="HurtboxComponent" parent="." index="4"]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_ebrsu")
+debug_color = Color(0.29181653, 0.61910075, 0.33997628, 0.41960785)
 
 [node name="HitboxComponent" parent="." index="5" instance=ExtResource("5_ebrsu")]
 collision_layer = 4

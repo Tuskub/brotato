@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://jadv5cnwph1c"]
+[gd_scene load_steps=10 format=3 uid="uid://jadv5cnwph1c"]
 
 [ext_resource type="PackedScene" uid="uid://xoi5bf006vpc" path="res://scenes/units/unit.tscn" id="1_woe1k"]
 [ext_resource type="Script" uid="uid://dec003yxb7xxg" path="res://scenes/units/players/player.gd" id="2_0n7mm"]
 [ext_resource type="Resource" uid="uid://b42xxkqwoymy1" path="res://resources/units/players/stat_player_well_rounded.tres" id="3_d3mmk"]
 [ext_resource type="Texture2D" uid="uid://cproxhccob85g" path="res://assets/sprites/Players/Player_1.png" id="3_xgfo0"]
 [ext_resource type="Script" uid="uid://bkd4k5vsdpg8f" path="res://scenes/units/players/trail.gd" id="4_udkk8"]
+[ext_resource type="Script" uid="uid://bakur338cx0e2" path="res://scenes/units/players/weapon_container.gd" id="6_udkk8"]
 
 [sub_resource type="Curve" id="Curve_n48mq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -44,15 +45,93 @@ z_index = 1
 position = Vector2(0, -31)
 shape = SubResource("CircleShape2D_q3bb5")
 
-[node name="DashTimer" type="Timer" parent="." index="3"]
+[node name="WeaponContainer" type="Node2D" parent="." index="3"]
+script = ExtResource("6_udkk8")
 
-[node name="DashCooldownTimer" type="Timer" parent="." index="4"]
+[node name="One" type="Node2D" parent="WeaponContainer" index="0"]
 
-[node name="TrailTimer" type="Timer" parent="." index="5"]
+[node name="Marker2D" type="Marker2D" parent="WeaponContainer/One" index="0"]
+position = Vector2(0, -15)
+
+[node name="Two" type="Node2D" parent="WeaponContainer" index="1"]
+
+[node name="Marker2D" type="Marker2D" parent="WeaponContainer/Two" index="0"]
+position = Vector2(40, 20)
+
+[node name="Marker2D2" type="Marker2D" parent="WeaponContainer/Two" index="1"]
+position = Vector2(-40, 20)
+
+[node name="Three" type="Node2D" parent="WeaponContainer" index="2"]
+
+[node name="Marker2D" type="Marker2D" parent="WeaponContainer/Three" index="0"]
+position = Vector2(40, 20)
+
+[node name="Marker2D2" type="Marker2D" parent="WeaponContainer/Three" index="1"]
+position = Vector2(-40, 20)
+
+[node name="Marker2D3" type="Marker2D" parent="WeaponContainer/Three" index="2"]
+position = Vector2(0, -115)
+
+[node name="Four" type="Node2D" parent="WeaponContainer" index="3"]
+
+[node name="Marker2D" type="Marker2D" parent="WeaponContainer/Four" index="0"]
+position = Vector2(40, 20)
+
+[node name="Marker2D2" type="Marker2D" parent="WeaponContainer/Four" index="1"]
+position = Vector2(-40, 20)
+
+[node name="Marker2D3" type="Marker2D" parent="WeaponContainer/Four" index="2"]
+position = Vector2(-40, -115)
+
+[node name="Marker2D4" type="Marker2D" parent="WeaponContainer/Four" index="3"]
+position = Vector2(40, -115)
+
+[node name="Five" type="Node2D" parent="WeaponContainer" index="4"]
+
+[node name="Marker2D" type="Marker2D" parent="WeaponContainer/Five" index="0"]
+position = Vector2(40, 20)
+
+[node name="Marker2D2" type="Marker2D" parent="WeaponContainer/Five" index="1"]
+position = Vector2(-40, 20)
+
+[node name="Marker2D3" type="Marker2D" parent="WeaponContainer/Five" index="2"]
+position = Vector2(-60, -40)
+
+[node name="Marker2D4" type="Marker2D" parent="WeaponContainer/Five" index="3"]
+position = Vector2(60, -40)
+
+[node name="Marker2D5" type="Marker2D" parent="WeaponContainer/Five" index="4"]
+position = Vector2(0, -115)
+
+[node name="Six" type="Node2D" parent="WeaponContainer" index="5"]
+
+[node name="Marker2D" type="Marker2D" parent="WeaponContainer/Six" index="0"]
+position = Vector2(35, 20)
+
+[node name="Marker2D2" type="Marker2D" parent="WeaponContainer/Six" index="1"]
+position = Vector2(-35, 20)
+
+[node name="Marker2D3" type="Marker2D" parent="WeaponContainer/Six" index="2"]
+position = Vector2(35, -115)
+
+[node name="Marker2D4" type="Marker2D" parent="WeaponContainer/Six" index="3"]
+position = Vector2(-35, -115)
+
+[node name="Marker2D5" type="Marker2D" parent="WeaponContainer/Six" index="4"]
+position = Vector2(60, -45)
+
+[node name="Marker2D6" type="Marker2D" parent="WeaponContainer/Six" index="5"]
+position = Vector2(-60, -45)
+
+[node name="DashTimer" type="Timer" parent="." index="4"]
+
+[node name="DashCooldownTimer" type="Timer" parent="." index="5"]
+
+[node name="TrailTimer" type="Timer" parent="." index="6"]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="HurtboxComponent" parent="." index="6"]
+[node name="HurtboxComponent" parent="." index="7"]
 collision_layer = 32
 collision_mask = 4
 
@@ -61,7 +140,7 @@ z_index = 1
 position = Vector2(0, -31)
 shape = SubResource("CircleShape2D_d3mmk")
 
-[node name="HealthBar" parent="." index="8"]
+[node name="HealthBar" parent="." index="9"]
 offset_left = -48.0
 offset_top = -89.0
 offset_right = 48.0

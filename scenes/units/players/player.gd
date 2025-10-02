@@ -9,6 +9,9 @@ class_name Player
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var collission: CollisionShape2D = $CollisionShape2D
 @onready var trail: Trail = %Trail
+@onready var weapon_container: WeaponContainer = $WeaponContainer
+
+var current_weapons: Array[Weapon] = []
 
 var move_dir: Vector2
 var is_dashing := false
@@ -22,6 +25,13 @@ func _ready() -> void:
 	
 	dash_cooldown_timer.one_shot = true
 	dash_cooldown_timer.wait_time = dash_cooldown
+	
+	add_weapon(preload("uid://c0lpdrbocr4at"))
+	add_weapon(preload("uid://c0lpdrbocr4at"))
+	add_weapon(preload("uid://c0lpdrbocr4at"))
+	add_weapon(preload("uid://c0lpdrbocr4at"))
+	add_weapon(preload("uid://c0lpdrbocr4at"))
+	add_weapon(preload("uid://c0lpdrbocr4at"))
 
 
 func _process(delta: float) -> void:
@@ -76,6 +86,13 @@ func can_dash() -> bool:
 	Input.is_action_just_pressed('dash') and\
 	move_dir != Vector2.ZERO
 
+func add_weapon(data: ItemWeapon) -> void:
+	var weapon := data.scene.instantiate() as Weapon
+	add_child(weapon)
+	
+	weapon.setup_weapon(data)
+	current_weapons.append(weapon)
+	weapon_container.update_weapons_position(current_weapons)
 
 
 func _on_dash_timer_timeout() -> void:
