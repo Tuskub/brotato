@@ -28,10 +28,7 @@ func _ready() -> void:
 	
 	add_weapon(preload("uid://c0lpdrbocr4at"))
 	add_weapon(preload("uid://c0lpdrbocr4at"))
-	add_weapon(preload("uid://c0lpdrbocr4at"))
-	add_weapon(preload("uid://c0lpdrbocr4at"))
-	add_weapon(preload("uid://c0lpdrbocr4at"))
-	add_weapon(preload("uid://c0lpdrbocr4at"))
+
 
 
 func _process(delta: float) -> void:
@@ -94,6 +91,8 @@ func add_weapon(data: ItemWeapon) -> void:
 	current_weapons.append(weapon)
 	weapon_container.update_weapons_position(current_weapons)
 
+func is_facing_right() -> bool:
+	return visuals.scale.x == -0.5
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false

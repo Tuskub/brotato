@@ -16,9 +16,67 @@ var weapon_spred: float
 func _ready() -> void:
 	attack_start_position = sprite.position
 
+func _process(delta: float) -> void:
+	if not is_attacking:
+		if targets.size() > 0:
+			update_closes_target()
+		else:
+			closest_target = null
+	
+	rotate_to_target()
+
 func setup_weapon(data: ItemWeapon) -> void:
 	self.data = data
 	collision.shape.radius = data.stats.max_range
+	
+func use_waepon() -> void:
+	calculate_spread()
+	
+func rotate_to_target() -> void:
+	if is_attacking:
+		rotation = get_custom_rotation_to_target()
+	else:
+		rotation = get_rotation_to_target()
+		
+func get_custom_rotation_to_target() -> float:
+	if not closest_target or not is_instance_valid(closest_target):
+		return rotation
+	
+	var rot := global_position.direction_to(closest_target.global_position).angle()
+	return rot + weapon_spred
+	
+func get_rotation_to_target() -> float:
+	if targets.size() == 0:
+		return get_idle_rotation()
+
+	var rot := global_position.direction_to(closest_target.global_position).angle()
+	return rot
+	
+func get_idle_rotation() -> float:
+	if Global.player.is_facing_right():
+		return 0
+	return PI
+	
+func calculate_spread() -> void:
+	weapon_spred += randf_range(-1 + data.stats.accuracy, 1 - data.stats.accuracy)
+	rotation += weapon_spred
+	
+func update_closes_target() -> void:
+	closest_target = get_closest_target()
+	
+func get_closest_target() -> Node2D:
+	if targets.size() == 0:
+		return
+	var closest_enemy := targets[0]
+	var closest_distance := global_position.distance_to(closest_enemy.global_position)
+	
+	for i in range(1, targets.size()):
+		var target: Enemy = targets[i]
+		var distance = global_position.distance_to(target.global_position)
+		if distance < closest_distance:
+			closest_enemy = target
+			closest_distance = distance
+	return closest_enemy
 
 func gun_use_weapon() -> bool:
 	return cooldown_timer.is_stopped() and closest_target
