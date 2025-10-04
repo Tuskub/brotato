@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://vm1mi6fnbh1n"]
+
+[ext_resource type="Script" uid="uid://b8a4mvry2f6tn" path="res://resources/items/weapons/weapon_stats.gd" id="1_0xvxo"]
+
+[resource]
+script = ExtResource("1_0xvxo")
+damage = 20.0
+crit_damage = 1.8
+max_range = 180.0
+cooldown = 0.6
+crit_chance = 0.15
+atack_duration = 0.3
+back_duration = 0.25
+metadata/_custom_type_script = "uid://b8a4mvry2f6tn"

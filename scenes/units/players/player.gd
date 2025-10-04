@@ -26,7 +26,12 @@ func _ready() -> void:
 	dash_cooldown_timer.one_shot = true
 	dash_cooldown_timer.wait_time = dash_cooldown
 	
+	add_weapon(preload("uid://c4lqjkv4noq4j"))
+	add_weapon(preload("uid://c7pupqvbdjhcv"))
 	add_weapon(preload("uid://c0lpdrbocr4at"))
+	add_weapon(preload("uid://b2vgpc47q00vl"))
+	add_weapon(preload("uid://q37altwl3h42"))
+	add_weapon(preload("uid://cqjhwngqwtr27"))
 
 
 

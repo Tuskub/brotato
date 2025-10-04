@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpfr7bp8hxeth"]
+
+[ext_resource type="PackedScene" uid="uid://dcc7rsdy4j8v6" path="res://scenes/weapons/weapon_base.tscn" id="1_w0ugt"]
+[ext_resource type="Texture2D" uid="uid://2fk3slrab3bp" path="res://assets/sprites/Weapons/Melee/Weapon_sword.png" id="2_ej1rg"]
+[ext_resource type="PackedScene" uid="uid://c0fyx8gj5uexl" path="res://scenes/components/hitbox_component.tscn" id="3_3wm1q"]
+[ext_resource type="Script" uid="uid://deu5p1vhsccvb" path="res://scenes/weapons/melee/melee_behavior.gd" id="4_nukjc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mjkx8"]
+radius = 30.601595
+height = 174.71928
+
+[node name="WeaponSword" instance=ExtResource("1_w0ugt")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ej1rg")
+
+[node name="HitboxComponent" parent="Sprite2D" index="0" instance=ExtResource("3_3wm1q")]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HitboxComponent" index="0"]
+z_index = 1
+rotation = 1.855285
+shape = SubResource("CapsuleShape2D_mjkx8")
+debug_color = Color(0.9446667, 0.011278287, 0.593142, 0.41960785)
+
+[node name="WeaponBehavior" parent="." index="3" node_paths=PackedStringArray("hitbox", "weapon")]
+script = ExtResource("4_nukjc")
+hitbox = NodePath("../Sprite2D/HitboxComponent")
+weapon = NodePath("..")
