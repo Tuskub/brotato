@@ -66,3 +66,9 @@ offset_right = 48.0
 offset_bottom = -72.0
 back_color = Color(0.015686275, 0.05490196, 0.16862746, 1)
 fill_color = Color(0.37254903, 0.5372549, 0.75686276, 1)
+
+[node name="KnockbackTimer" type="Timer" parent="." index="9"]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

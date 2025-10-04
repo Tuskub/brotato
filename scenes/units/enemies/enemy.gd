@@ -3,8 +3,11 @@ class_name Enemy
 
 @export var flock_push := 20.0
 @onready var vision_area: Area2D = $VisionArea
+@onready var knockback_timer: Timer = $KnockbackTimer
 
 var can_move: bool = true
+var knockback_direction: Vector2
+var knockback_power: float
 
 func _process(delta: float) -> void:
 	update_animations()
@@ -14,7 +17,7 @@ func _process(delta: float) -> void:
 	
 	if not can_move_towards_player():
 		return
-	position += get_move_direction() * stats.speed * delta 
+	position += (get_move_direction() + knockback_direction * knockback_power) * stats.speed * delta 
 	update_rotation()
 	
 func update_animations() -> void:
@@ -51,4 +54,23 @@ func update_rotation() -> void:
 	var moving_right := global_position.x < player_pos.x
 	visuals.scale = Vector2(-0.5, 0.5) if  moving_right else Vector2(0.5, 0.5)
 	
+func apply_knockback(dir: Vector2, power: float) -> void:
+	knockback_direction = dir
+	knockback_power = power
+	if knockback_timer.time_left > 0:
+		knockback_timer.stop()
+		reset_knockback()
+	knockback_timer.start()
 	
+func reset_knockback() -> void:
+	knockback_direction = Vector2.ZERO
+	knockback_power = 0.0
+	
+func _on_hurtbox_component_on_damaged(hitbox: HitboxComponent) -> void:
+	super._on_hurtbox_component_on_damaged(hitbox)
+	if hitbox.knockback_power > 0:
+		var dir := hitbox.source.global_position.direction_to(global_position)
+		apply_knockback(dir, hitbox.knockback_power)
+
+func _on_knockback_timer_timeout() -> void:
+	reset_knockback()

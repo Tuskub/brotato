@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1igydtpm3sq8"]
+[gd_scene load_steps=6 format=3 uid="uid://d1igydtpm3sq8"]
 
 [ext_resource type="PackedScene" uid="uid://dcc7rsdy4j8v6" path="res://scenes/weapons/weapon_base.tscn" id="1_soyvn"]
 [ext_resource type="Texture2D" uid="uid://l5hst1cf27oo" path="res://assets/sprites/Weapons/Melee/Weapon_Punch.png" id="2_gq287"]
 [ext_resource type="PackedScene" uid="uid://c0fyx8gj5uexl" path="res://scenes/components/hitbox_component.tscn" id="3_sv013"]
+[ext_resource type="Script" uid="uid://deu5p1vhsccvb" path="res://scenes/weapons/melee/melee_behavior.gd" id="4_etoc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etoc4"]
 size = Vector2(52, 38)
@@ -25,3 +26,8 @@ z_index = 1
 position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_etoc4")
 debug_color = Color(0.9431027, 0.16383639, 0.4467345, 0.41960785)
+
+[node name="WeaponBehavior" parent="." index="3" node_paths=PackedStringArray("hitbox", "weapon")]
+script = ExtResource("4_etoc4")
+hitbox = NodePath("../Sprite2D/HitboxComponent")
+weapon = NodePath("..")

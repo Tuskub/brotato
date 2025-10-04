@@ -4,6 +4,7 @@ class_name Weapon
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = %CollisionShape2D
 @onready var cooldown_timer: Timer = $CooldownTimer
+@onready var weapon_behavior: WeaponBehavior = $WeaponBehavior
 
 var data: ItemWeapon
 var is_attacking := false
@@ -24,13 +25,18 @@ func _process(delta: float) -> void:
 			closest_target = null
 	
 	rotate_to_target()
+	if can_use_weapon():
+		use_weapon()
 
 func setup_weapon(data: ItemWeapon) -> void:
 	self.data = data
 	collision.shape.radius = data.stats.max_range
 	
-func use_waepon() -> void:
+func use_weapon() -> void:
 	calculate_spread()
+	weapon_behavior.execute_attack()
+	cooldown_timer.wait_time = data.stats.cooldown
+	cooldown_timer.start()
 	
 func rotate_to_target() -> void:
 	if is_attacking:
@@ -78,7 +84,7 @@ func get_closest_target() -> Node2D:
 			closest_distance = distance
 	return closest_enemy
 
-func gun_use_weapon() -> bool:
+func can_use_weapon() -> bool:
 	return cooldown_timer.is_stopped() and closest_target
 
 

@@ -6,7 +6,6 @@
 script = ExtResource("1_x8btq")
 damage = 8.0
 max_range = 180.0
-knockback = 1.0
 accuracy = 1.0
 cooldown = 1.2
 metadata/_custom_type_script = "uid://b8a4mvry2f6tn"
