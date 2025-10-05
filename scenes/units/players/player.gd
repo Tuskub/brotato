@@ -26,7 +26,7 @@ func _ready() -> void:
 	dash_cooldown_timer.one_shot = true
 	dash_cooldown_timer.wait_time = dash_cooldown
 	
-	add_weapon(preload("uid://c4lqjkv4noq4j"))
+	add_weapon(preload("uid://bxlu2qkyn4xqf"))
 
 
 func _process(delta: float) -> void:

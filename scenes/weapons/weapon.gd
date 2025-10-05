@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 			closest_target = null
 	
 	rotate_to_target()
+	update_visuals()
 	if can_use_weapon():
 		use_weapon()
 
@@ -62,6 +63,12 @@ func get_idle_rotation() -> float:
 	if Global.player.is_facing_right():
 		return 0
 	return PI
+
+func update_visuals() -> void:
+	if abs(rotation) > PI /2:
+		sprite.scale.y = -0.5
+	else:
+		sprite.scale.y = 0.5
 	
 func calculate_spread() -> void:
 	weapon_spred += randf_range(-1 + data.stats.accuracy, 1 - data.stats.accuracy)
