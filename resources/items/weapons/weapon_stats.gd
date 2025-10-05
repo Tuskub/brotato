@@ -6,7 +6,7 @@ class_name  WeaponStats
 @export var max_range := 150.0
 @export var knockback := 0.0
 @export var recoil := 25.0
-@export var projectile_scene := PackedScene
+@export var projectile_scene: PackedScene
 @export var projectile_speed := 1600.0
 
 @export_range(0.0, 1.0) var accuracy := 0.9 

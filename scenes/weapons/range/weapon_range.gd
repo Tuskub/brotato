@@ -6,7 +6,7 @@ class_name RangeBehavior
 func execute_attack() -> void:
 	weapon.is_attacking = true
 	
-	print('shoot')
+	crete_projectile()
 	
 	var tween := create_tween()
 	var attack_pos := Vector2(weapon.attack_start_position.x - weapon.data.stats.recoil, weapon.attack_start_position.y)
@@ -16,3 +16,11 @@ func execute_attack() -> void:
 	await tween.finished
 	weapon.is_attacking = false
 	critical = false
+
+func crete_projectile() -> void:
+	var instance := weapon.data.stats.projectile_scene.instantiate() as Projectile
+	get_tree().root.add_child(instance)
+	instance.global_position = muzzle.global_position
+	
+	var velocity := Vector2.RIGHT.rotated(weapon.rotation) * weapon.data.stats.projectile_speed
+	instance.set_projectile(velocity, get_damage(), critical, weapon.data.stats.knockback, weapon.get_parent())
