@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://bxlvauks8gju"]
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://b4gvelvtytsyc"]
 
 [ext_resource type="Script" uid="uid://b8a4mvry2f6tn" path="res://resources/items/weapons/weapon_stats.gd" id="1_ousbh"]
 
 [resource]
 script = ExtResource("1_ousbh")
-damage = 18.0
-crit_damage = 1.5
-max_range = 170.0
+damage = 30
+crit_damage = 2.0
+max_range = 200.0
+knockback = 1.5
 recoil = 20.0
-cooldown = 0.9
+projectile_speed = 1500.0
+accuracy = 1.0
+cooldown = 0.8
 crit_chance = 0.1
-atack_duration = 0.3
-back_duration = 0.15
-metadata/_custom_type_script = "uid://b8a4mvry2f6tn"
+life_steal = 0.1
+back_duration = 0.13
+metadata/_custom_type_script = "uid://c7dropxg1o1hb"

@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://im714wvuraaf"]
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://cedamlir5y266"]
 
-[ext_resource type="Script" uid="uid://b8a4mvry2f6tn" path="res://resources/items/weapons/weapon_stats.gd" id="1_6ht4q"]
+[ext_resource type="Script" uid="uid://b8a4mvry2f6tn" path="res://resources/items/weapons/weapon_stats.gd" id="1_cd8ve"]
 
 [resource]
-script = ExtResource("1_6ht4q")
-damage = 6.0
-max_range = 180.0
+script = ExtResource("1_cd8ve")
+damage = 10
+crit_damage = 2.5
+max_range = 220.0
+knockback = 2.5
+recoil = 20.0
+projectile_speed = 1500.0
+accuracy = 1.0
 cooldown = 1.0
-crit_chance = 0.12
-atack_duration = 0.3
-back_duration = 0.25
-metadata/_custom_type_script = "uid://b8a4mvry2f6tn"
+crit_chance = 0.07
+life_steal = 0.1
+back_duration = 0.12
+metadata/_custom_type_script = "uid://c7dropxg1o1hb"

@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ct2jopdoy6y1v" path="res://resources/items/weapons/item_weapon.gd" id="1_5pmfu"]
 [ext_resource type="Texture2D" uid="uid://yk5ltsb4khr8" path="res://assets/sprites/Weapons/Icons/weapon_chainsaw_icon.png" id="1_bwo2n"]
 [ext_resource type="PackedScene" uid="uid://d2k5wxsuodxib" path="res://scenes/weapons/melee/weapon_chainsaw.tscn" id="2_8f8c5"]
-[ext_resource type="Resource" uid="uid://5yf8prv1hvrk" path="res://resources/items/weapons/melee/chainsaw/stats_chainsaw_1.tres" id="4_cb55p"]
-[ext_resource type="Resource" path="res://resources/items/weapons/melee/chainsaw/item_chainsaw_2.tres" id="5_8f8c5"]
+[ext_resource type="Resource" uid="uid://xcqnm521dmxd" path="res://resources/items/weapons/melee/chainsaw/stats_chainsaw_1.tres" id="4_cb55p"]
+[ext_resource type="Resource" uid="uid://dr4gprcfojn3h" path="res://resources/items/weapons/melee/chainsaw/item_chainsaw_2.tres" id="5_8f8c5"]
 
 [resource]
 script = ExtResource("1_5pmfu")
@@ -13,5 +13,5 @@ stats = ExtResource("4_cb55p")
 upgrade_to = ExtResource("5_8f8c5")
 item_name = "Chainsaw I"
 item_icon = ExtResource("1_bwo2n")
-item_cost = 16
+item_cost = 15
 metadata/_custom_type_script = "uid://ct2jopdoy6y1v"

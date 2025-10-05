@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://yk5ltsb4khr8" path="res://assets/sprites/Weapons/Icons/weapon_chainsaw_icon.png" id="1_rqe4i"]
 [ext_resource type="PackedScene" uid="uid://d2k5wxsuodxib" path="res://scenes/weapons/melee/weapon_chainsaw.tscn" id="2_wd6yw"]
 [ext_resource type="Script" uid="uid://ct2jopdoy6y1v" path="res://resources/items/weapons/item_weapon.gd" id="3_x0uwd"]
-[ext_resource type="Resource" uid="uid://bgsgdv2afrwd0" path="res://resources/items/weapons/melee/chainsaw/stats_chainsaw_2.tres" id="4_qxy07"]
+[ext_resource type="Resource" uid="uid://hg8oogknkhlr" path="res://resources/items/weapons/melee/chainsaw/stats_chainsaw_2.tres" id="4_qxy07"]
 [ext_resource type="Resource" uid="uid://rueyu4qmcknu" path="res://resources/items/weapons/melee/chainsaw/item_chainsaw_3.tres" id="5_hu5uq"]
 
 [resource]
@@ -14,5 +14,5 @@ upgrade_to = ExtResource("5_hu5uq")
 item_name = "Chainsaw II"
 item_icon = ExtResource("1_rqe4i")
 item_tier = 1
-item_cost = 25
+item_cost = 30
 metadata/_custom_type_script = "uid://ct2jopdoy6y1v"

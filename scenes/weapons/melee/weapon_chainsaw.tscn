@@ -12,6 +12,7 @@ height = 156.0
 [node name="WeaponChainsaw" instance=ExtResource("1_51ckw")]
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(34, -4)
 texture = ExtResource("2_guiq3")
 
 [node name="HitboxComponent" parent="Sprite2D" index="0" instance=ExtResource("3_58nki")]

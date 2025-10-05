@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d8op56q0uwh1" path="res://assets/sprites/Weapons/Icons/weapon_axe_icon.png" id="1_k6p4m"]
 [ext_resource type="PackedScene" uid="uid://bpc7qmrh8hs0n" path="res://scenes/weapons/melee/weapon_axe.tscn" id="2_8pvf7"]
 [ext_resource type="Script" uid="uid://ct2jopdoy6y1v" path="res://resources/items/weapons/item_weapon.gd" id="3_7sthq"]
-[ext_resource type="Resource" uid="uid://cvlta4cuf5k4d" path="res://resources/items/weapons/melee/axe/stats_axe_4.tres" id="4_k6p4m"]
+[ext_resource type="Resource" uid="uid://dotbi0ichlew6" path="res://resources/items/weapons/melee/axe/stats_axe_4.tres" id="4_k6p4m"]
 
 [resource]
 script = ExtResource("3_7sthq")
@@ -12,5 +12,5 @@ stats = ExtResource("4_k6p4m")
 item_name = "Axe IV"
 item_icon = ExtResource("1_k6p4m")
 item_tier = 3
-item_cost = 130
+item_cost = 295
 metadata/_custom_type_script = "uid://ct2jopdoy6y1v"

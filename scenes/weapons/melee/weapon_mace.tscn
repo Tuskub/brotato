@@ -11,6 +11,7 @@ radius = 42.047592
 [node name="WeaponMace" instance=ExtResource("1_t23au")]
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(30, 0)
 texture = ExtResource("2_cp5tk")
 
 [node name="HitboxComponent" parent="Sprite2D" index="0" instance=ExtResource("3_wi2b8")]

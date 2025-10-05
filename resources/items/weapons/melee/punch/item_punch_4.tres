@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemWeapon" load_steps=5 format=3 uid="uid://dbpptqcw2013p"]
+
+[ext_resource type="Texture2D" uid="uid://cyh23wqn8vcac" path="res://assets/sprites/Weapons/Icons/weapon_punch_icon.png" id="1_503wk"]
+[ext_resource type="PackedScene" uid="uid://d1igydtpm3sq8" path="res://scenes/weapons/melee/weapon_punch.tscn" id="2_tm866"]
+[ext_resource type="Script" uid="uid://ct2jopdoy6y1v" path="res://resources/items/weapons/item_weapon.gd" id="3_svmap"]
+[ext_resource type="Resource" uid="uid://d2xdpxwescy88" path="res://resources/items/weapons/melee/punch/stats_punch_4.tres" id="4_dp4pe"]
+
+[resource]
+script = ExtResource("3_svmap")
+scene = ExtResource("2_tm866")
+stats = ExtResource("4_dp4pe")
+item_name = "Puch IV"
+item_icon = ExtResource("1_503wk")
+item_tier = 3
+item_cost = 130
+metadata/_custom_type_script = "uid://ct2jopdoy6y1v"
