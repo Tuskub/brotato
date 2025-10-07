@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=3 format=3 uid="uid://cckqjgyqlgd1g"]
+
+[ext_resource type="Script" uid="uid://b8a4mvry2f6tn" path="res://resources/items/weapons/weapon_stats.gd" id="1_0c0or"]
+[ext_resource type="PackedScene" uid="uid://bg3wkn4k4al02" path="res://scenes/weapons/projectiles/projectile_shotgun.tscn" id="1_elnca"]
+
+[resource]
+script = ExtResource("1_0c0or")
+projectile_scene = ExtResource("1_elnca")
+projectile_speed = 1500.0
+accuracy = 0.8
+cooldown = 1.0

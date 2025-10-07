@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0fyx8gj5uexl" path="res://scenes/components/hitbox_component.tscn" id="1_vfiwf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_im6h6"]
-radius = 19.026299
+radius = 22.0
 
 [node name="ProjectilePistol" type="Node2D" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_40ckw")
