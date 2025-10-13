@@ -9,7 +9,11 @@ var can_move: bool = true
 var knockback_direction: Vector2
 var knockback_power: float
 
+
 func _process(delta: float) -> void:
+	if Global.game_paused:
+		return
+
 	update_animations()
 
 	if not can_move:
@@ -20,11 +24,20 @@ func _process(delta: float) -> void:
 	position += (get_move_direction() + knockback_direction * knockback_power) * stats.speed * delta 
 	update_rotation()
 	
+func destroy_enemy() -> void:
+	can_move = false
+	animation.play('die')
+	await animation.animation_finished
+	queue_free()
+
 func update_animations() -> void:
-	if can_move_towards_player() and can_move:
+	if not can_move:
+		return
+	
+	if can_move_towards_player():
 		animation.play('move')
-	else:
-		animation.play('idle')
+		
+
 
 func can_move_towards_player() -> bool:
 	return is_instance_valid(Global.player) and\

@@ -11,6 +11,8 @@ enum UpgradeTier {
 }
 
 var player: Player
+var game_paused := false
+
 const  FLASH_MATERIAL = preload("uid://x4frie3idpxo")
 const FLOATING_TEXT_SCENE = preload("uid://qkwyrg22h3gi")
 

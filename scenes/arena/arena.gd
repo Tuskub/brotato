@@ -7,10 +7,21 @@ class_name Arena
 @export var critical_color: Color
 @export var hp_color: Color
 
+@onready var wave_index_label: Label = %WaveIndexLabel
+@onready var wave_time_label: Label = %WaveTimeLabel
+@onready var spawner: Spawner = $Spawner
+
 func _ready() -> void:
 	Global.player = player
 	Global.on_create_block_text.connect(_on_create_block_text)
 	Global.on_create_damage_text.connect(_on_create_damage_text)
+
+func _process(delta: float) -> void:
+	if Global.game_paused:
+		return
+	wave_index_label.text = spawner.get_wave_text()
+	wave_time_label.text = spawner.get_wave_timer_text()
+
 	
 func create_floating_text(unit: Node2D) -> FloatingText:
 	var instance := Global.FLOATING_TEXT_SCENE.instantiate() as FloatingText
