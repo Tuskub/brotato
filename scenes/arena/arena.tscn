@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy355015qgab6"]
+[gd_scene load_steps=11 format=3 uid="uid://dy355015qgab6"]
 
 [ext_resource type="Texture2D" uid="uid://cy4xfx762bxgb" path="res://assets/sprites/BG.png" id="1_5tue2"]
 [ext_resource type="Script" uid="uid://capwpqteppe4m" path="res://scenes/arena/arena.gd" id="1_asdgj"]
 [ext_resource type="Texture2D" uid="uid://ov4fmsbglo55" path="res://assets/sprites/Map.png" id="2_aj7ud"]
 [ext_resource type="PackedScene" uid="uid://jadv5cnwph1c" path="res://scenes/units/players/player_well_rounded.tscn" id="3_asdgj"]
 [ext_resource type="Script" uid="uid://c5s13p4g2x11f" path="res://scenes/arena/camera_2d.gd" id="4_aj7ud"]
-[ext_resource type="PackedScene" uid="uid://cwiud4jd3uiwc" path="res://scenes/units/enemies/enemy_chaser_slow.tscn" id="6_jx0ua"]
+[ext_resource type="PackedScene" uid="uid://n8xlqxlsl5el" path="res://scenes/units/enemies/enemy_charger.tscn" id="6_jx0ua"]
+[ext_resource type="PackedScene" uid="uid://dt0abjo0fjjcj" path="res://scenes/units/enemies/enemy_shooter.tscn" id="7_u52cf"]
+[ext_resource type="Script" uid="uid://docfda4j2kr0p" path="res://scenes/arena/spawner.gd" id="8_ii07k"]
+[ext_resource type="Script" uid="uid://dqhoumuppl4bx" path="res://resources/waves/wave_data.gd" id="9_2ml6w"]
+[ext_resource type="Resource" uid="uid://cer6rdmxrnenh" path="res://resources/waves/data/wave_1_to_5.tres" id="10_xgbxb"]
 
 [node name="Arena" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_asdgj")
@@ -24,15 +28,27 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_aj7ud")
 
 [node name="PlayerWellRounded" parent="." instance=ExtResource("3_asdgj")]
+dash_duration = 0.5
+dash_speed_multi = 1.5
+dash_cooldown = 0.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("4_aj7ud")
 
-[node name="EnemyChaserSlow" parent="." instance=ExtResource("6_jx0ua")]
-position = Vector2(-614, -2)
+[node name="EnemyShooter" parent="." instance=ExtResource("7_u52cf")]
+position = Vector2(-711, 237)
 
-[node name="EnemyChaserSlow2" parent="." instance=ExtResource("6_jx0ua")]
-position = Vector2(-565, -176)
+[node name="EnemyCharger" parent="." instance=ExtResource("6_jx0ua")]
+position = Vector2(-708, -310)
 
-[node name="EnemyChaserSlow3" parent="." instance=ExtResource("6_jx0ua")]
-position = Vector2(-550, 148)
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("8_ii07k")
+wave_data = Array[ExtResource("9_2ml6w")]([ExtResource("10_xgbxb")])
+
+[node name="SpawnTimer" type="Timer" parent="Spawner"]
+one_shot = true
+
+[node name="WaveTimer" type="Timer" parent="Spawner"]
+one_shot = true
+
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
