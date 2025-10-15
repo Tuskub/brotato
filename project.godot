@@ -29,6 +29,8 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://resources/": "green",
+"res://resources/items/": "purple",
+"res://resources/items/upgrades/": "gray",
 "res://resources/items/weapons/": "blue",
 "res://resources/units/": "orange",
 "res://resources/waves/": "pink",
