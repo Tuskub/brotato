@@ -114,12 +114,12 @@ text = "10"
 label_settings = SubResource("LabelSettings_d6vhd")
 horizontal_alignment = 2
 
-[node name="StatsLiveSteal" type="Panel" parent="MarginContainer/VBoxContainer"]
+[node name="StatsLifeSteal" type="Panel" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q67w4")
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/StatsLiveSteal"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/StatsLifeSteal"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -129,10 +129,10 @@ offset_top = -14.5
 offset_right = 108.0
 offset_bottom = 14.5
 grow_vertical = 2
-text = "% Live Steal:"
+text = "% Life Steal:"
 label_settings = SubResource("LabelSettings_d6vhd")
 
-[node name="LiveStealLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsLiveSteal"]
+[node name="LifeStealLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsLifeSteal"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6

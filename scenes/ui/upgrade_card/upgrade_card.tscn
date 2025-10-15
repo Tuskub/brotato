@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfohai4xgom8w"]
+
+[ext_resource type="Script" uid="uid://cvf3pfljbb8mh" path="res://scenes/ui/upgrade_card/upgrade_card.gd" id="1_7erta"]
+[ext_resource type="StyleBox" uid="uid://dt8ypn0hibm80" path="res://styles/common_style.tres" id="1_v41mk"]
+[ext_resource type="Texture2D" uid="uid://dn68qq5evmvwa" path="res://assets/sprites/Upgrades/12.png" id="2_mkexl"]
+[ext_resource type="PackedScene" uid="uid://cexaxg5jj2ljl" path="res://scenes/ui/custom_button/custom_button.tscn" id="4_kjnsj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mkexl"]
+font_size = 28
+
+[node name="UpgradeCard" type="Panel"]
+custom_minimum_size = Vector2(300, 220)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("1_v41mk")
+script = ExtResource("1_7erta")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_mkexl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 48.666668
+text = "Damage"
+label_settings = SubResource("LabelSettings_mkexl")
+
+[node name="Description" type="Label" parent="MarginContainer/Control"]
+modulate = Color(0.827451, 0.9098039, 0.17254902, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 55.0
+offset_right = 290.0
+offset_bottom = 93.66667
+text = "+1"
+label_settings = SubResource("LabelSettings_mkexl")
+
+[node name="CustomButton" parent="MarginContainer/Control" instance=ExtResource("4_kjnsj")]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+offset_left = -130.0
+offset_top = -58.0
+offset_right = 130.0
