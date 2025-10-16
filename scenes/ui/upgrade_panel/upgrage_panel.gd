@@ -6,15 +6,13 @@ const UPGRADE_CARD = preload("uid://bfohai4xgom8w")
 
 @export var upgrade_list: Array[ItemUpgrade]
 
-func _ready() -> void:
-	load_upgrades()
-
-func load_upgrades() -> void:
+func load_upgrades(current_wave: int) -> void:
 	for child in items_container.get_children():
 		child.queue_free()
 	
-	for i in 4:
-		var random_upgrade := upgrade_list.pick_random() as ItemUpgrade
+	var config := Global.UPGRADE_PRPBABILITY_CONFIG
+	var selected_upgrades := Global.select_items_from_offer(upgrade_list, current_wave, config)
+	for random_upgrade: ItemUpgrade in selected_upgrades:
 		var card_instance :=  UPGRADE_CARD.instantiate() as UpgradeCard
 		items_container.add_child(card_instance)
 		card_instance.item_data = random_upgrade

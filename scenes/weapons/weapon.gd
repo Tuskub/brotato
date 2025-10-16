@@ -101,7 +101,6 @@ func can_use_weapon() -> bool:
 func _on_range_area_area_entered(area: Area2D) -> void:
 	targets.push_back(area)
 
-
 func _on_range_area_area_exited(area: Area2D) -> void:
 	targets.erase(area)
 	if targets.size() == 0:

@@ -47,6 +47,7 @@ func create_floating_text(unit: Node2D) -> FloatingText:
 	
 	
 func show_upgrades() -> void:
+	upgrage_panel.load_upgrades(spawner.wave_index)
 	upgrage_panel.show()
 
 func _on_create_block_text(unit: Node2D) -> void:
