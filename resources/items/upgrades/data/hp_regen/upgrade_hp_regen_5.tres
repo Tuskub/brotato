@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemUpgrade" load_steps=3 format=3 uid="uid://cq08tcrgvox2r"]
+
+[ext_resource type="Texture2D" uid="uid://ceccthrgto2um" path="res://assets/sprites/Upgrades/13.png" id="1_qgnyg"]
+[ext_resource type="Script" uid="uid://ti87pqqmd7ro" path="res://resources/items/upgrades/item_upgrade.gd" id="2_l3hoe"]
+
+[resource]
+script = ExtResource("2_l3hoe")
+value = 5.0
+description = "+ 5"
+stat_id = "hp_regen"
+item_name = "HP regen"
+item_icon = ExtResource("1_qgnyg")
+item_tier = 3
+item_type = 1
+metadata/_custom_type_script = "uid://ti87pqqmd7ro"
