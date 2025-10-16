@@ -98,6 +98,10 @@ func add_weapon(data: ItemWeapon) -> void:
 
 func is_facing_right() -> bool:
 	return visuals.scale.x == -0.5
+	
+func update_player_new_wave() -> void:
+	stats.health += stats.health_increase_pre_wave
+	health_component.setup(stats)
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
@@ -105,3 +109,16 @@ func _on_dash_timer_timeout() -> void:
 	move_dir = Vector2.ZERO
 	collission.set_deferred("disabled", false)
 	dash_cooldown_timer.start()
+
+
+func _on_hp_regen_timer_timeout() -> void:
+	if health_component.current_health <= 0.0:
+		return
+	
+	if health_component.current_health >= stats.health:
+		return
+	
+	if (stats.hp_regen > 0.0):
+		health_component.heal(stats.hp_regen)
+		Global.on_create_heal_text.emit(self, stats.hp_regen)
+		

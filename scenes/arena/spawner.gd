@@ -1,6 +1,8 @@
 extends Node2D
 class_name Spawner
 
+signal on_wave_complited
+
 @export var spawn_area_size := Vector2(1000, 500)
 @export var wave_data: Array[WaveDate]
 @export var enemy_collection: Array[UnitStats]
@@ -11,9 +13,6 @@ class_name Spawner
 var wave_index := 1
 var current_wave_data: WaveDate
 var spawned_enemies: Array[Enemy]
-
-func _ready() -> void:
-	start_wave()
 
 func find_wave_data() -> WaveDate:
 	for wave in wave_data:
@@ -92,6 +91,7 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_wave_timer_timeout() -> void:
 	spawn_timer.stop()
+	on_wave_complited.emit()
 	clear_enemies()
 	Global.game_paused = true
 	udpates_enemies_new_wave()

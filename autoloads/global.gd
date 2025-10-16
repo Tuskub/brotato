@@ -2,6 +2,9 @@ extends Node
 
 signal on_create_block_text(unit: Node2D)
 signal on_create_damage_text(unit: Node2D, hitbox: HitboxComponent)
+signal on_create_heal_text(unit: Node2D, heal: float)
+
+signal on_upgrade_selected
 
 enum UpgradeTier {
 	COMMON,

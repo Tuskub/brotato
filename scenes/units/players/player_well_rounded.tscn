@@ -20,9 +20,9 @@ radius = 33.06055
 [node name="PlayerWellRounded" instance=ExtResource("1_woe1k")]
 collision_mask = 2
 script = ExtResource("2_0n7mm")
-dash_duration = null
-dash_speed_multi = null
-dash_cooldown = null
+dash_duration = 0.5
+dash_speed_multi = 1.5
+dash_cooldown = 0.5
 stats = ExtResource("3_d3mmk")
 
 [node name="Trail" type="Line2D" parent="Visuals" index="0" node_paths=PackedStringArray("player")]
@@ -148,5 +148,10 @@ offset_bottom = -69.0
 back_color = Color(0.13725491, 0.019607844, 0.02745098, 1)
 fill_color = Color(1, 0.2901961, 0.45490196, 1)
 
+[node name="HPRegenTimer" type="Timer" parent="." index="11"]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="TrailTimer" to="Visuals/Trail" method="_on_trail_timer_timeout"]
+[connection signal="timeout" from="HPRegenTimer" to="." method="_on_hp_regen_timer_timeout"]
