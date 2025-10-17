@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dcc7rsdy4j8v6" path="res://scenes/weapons/weapon_base.tscn" id="1_yuv0n"]
 [ext_resource type="Texture2D" uid="uid://xqoogkscdty6" path="res://assets/sprites/Weapons/Range/WeaponLaser.png" id="2_iu30o"]
-[ext_resource type="Script" uid="uid://bwvhhgev8kjgg" path="res://scenes/weapons/range/weapon_range.gd" id="3_ujh5k"]
+[ext_resource type="Script" uid="uid://bwvhhgev8kjgg" path="res://scenes/weapons/range/range_behavior.gd" id="3_ujh5k"]
 
 [node name="WeaponLazer" instance=ExtResource("1_yuv0n")]
 

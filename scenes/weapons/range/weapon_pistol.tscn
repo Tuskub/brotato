@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dcc7rsdy4j8v6" path="res://scenes/weapons/weapon_base.tscn" id="1_g1grj"]
 [ext_resource type="Texture2D" uid="uid://bbsd0o1wllf0p" path="res://assets/sprites/Weapons/Range/WeaponPistol.png" id="2_hqh7m"]
-[ext_resource type="Script" uid="uid://bwvhhgev8kjgg" path="res://scenes/weapons/range/weapon_range.gd" id="3_x7rn7"]
+[ext_resource type="Script" uid="uid://bwvhhgev8kjgg" path="res://scenes/weapons/range/range_behavior.gd" id="3_x7rn7"]
 
 [node name="WeaponPistol" instance=ExtResource("1_g1grj")]
 

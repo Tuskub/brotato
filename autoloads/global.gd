@@ -21,9 +21,19 @@ const UPGRADE_PRPBABILITY_CONFIG = {
 
 var player: Player
 var game_paused := false
+var coins: int
 
-const  FLASH_MATERIAL = preload("uid://x4frie3idpxo")
+const FLASH_MATERIAL = preload("uid://x4frie3idpxo")
 const FLOATING_TEXT_SCENE = preload("uid://qkwyrg22h3gi")
+
+const COMMON_STYLE = preload("uid://dt8ypn0hibm80")
+const EPIC_STYLE = preload("uid://ccifgx30nsp4h")
+const LEGENDARY_STYLE = preload("uid://dnnhiwx3gx5h0")
+const RARE_STYLE = preload("uid://ici2d08626ar")
+
+func get_harvesting_coins() -> void:
+	coins += player.stats.harvesting
+	
 
 func get_chance_succes(chance: float) -> bool:
 	var random := randf_range(0.0, 1.0)
@@ -113,3 +123,14 @@ func select_items_from_offer(item_pool: Array, current_wave: int, config: Dictio
 				offered_items.append(selected_item)
 	
 	return offered_items
+
+func get_tier_style(tier: UpgradeTier) -> StyleBoxFlat:
+	match tier:
+		UpgradeTier.COMMON:
+			return COMMON_STYLE
+		UpgradeTier.RARE:
+			return RARE_STYLE
+		UpgradeTier.EPIC:
+			return EPIC_STYLE
+		_:
+			return LEGENDARY_STYLE

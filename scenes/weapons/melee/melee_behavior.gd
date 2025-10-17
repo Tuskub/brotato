@@ -16,6 +16,8 @@ func execute_attack() -> void:
 	var attack_pos := Vector2(weapon.attack_start_position.x + weapon.data.stats.max_range, weapon.attack_start_position.y)
 	tween.tween_property(weapon.sprite, 'position', attack_pos, weapon.data.stats.atack_duration)
 	
+	apply_life_steal()
+	
 	tween.tween_property(weapon.sprite, 'position', weapon.attack_start_position, weapon.data.stats.back_duration)
 	
 	tween.finished.connect(func():

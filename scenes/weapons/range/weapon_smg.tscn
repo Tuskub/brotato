@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dcc7rsdy4j8v6" path="res://scenes/weapons/weapon_base.tscn" id="1_hnjef"]
 [ext_resource type="Texture2D" uid="uid://c2y5upwgfl7p4" path="res://assets/sprites/Weapons/Range/WeaponSMG.png" id="2_p43dw"]
-[ext_resource type="Script" uid="uid://bwvhhgev8kjgg" path="res://scenes/weapons/range/weapon_range.gd" id="3_a067a"]
+[ext_resource type="Script" uid="uid://bwvhhgev8kjgg" path="res://scenes/weapons/range/range_behavior.gd" id="3_a067a"]
 
 [node name="WeaponSMG" instance=ExtResource("1_hnjef")]
 

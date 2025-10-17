@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dcc7rsdy4j8v6" path="res://scenes/weapons/weapon_base.tscn" id="1_bgd6k"]
 [ext_resource type="Texture2D" uid="uid://duqh85poxmumg" path="res://assets/sprites/Weapons/Range/WeaponRevolver.png" id="2_7fv2y"]
-[ext_resource type="Script" uid="uid://bwvhhgev8kjgg" path="res://scenes/weapons/range/weapon_range.gd" id="3_5poi7"]
+[ext_resource type="Script" uid="uid://bwvhhgev8kjgg" path="res://scenes/weapons/range/range_behavior.gd" id="3_5poi7"]
 
 [node name="WeaponRevolver" instance=ExtResource("1_bgd6k")]
 
