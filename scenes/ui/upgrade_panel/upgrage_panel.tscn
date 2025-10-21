@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://pu5olhov62fd"]
+[gd_scene load_steps=53 format=3 uid="uid://pu5olhov62fd"]
 
 [ext_resource type="Script" uid="uid://qoudjtv73wnr" path="res://scenes/ui/upgrade_panel/upgrage_panel.gd" id="1_185hp"]
 [ext_resource type="PackedScene" uid="uid://bfohai4xgom8w" path="res://scenes/ui/upgrade_card/upgrade_card.tscn" id="2_1n3gp"]
@@ -51,16 +51,19 @@
 [ext_resource type="Resource" uid="uid://dij17ywc2nism" path="res://resources/items/upgrades/data/speed/upgrade_speed_7.tres" id="44_hbyl3"]
 [ext_resource type="Resource" uid="uid://c1t0jhsjhjgio" path="res://resources/items/upgrades/data/speed/upgrade_speed_12.tres" id="46_rt6n4"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lim5"]
+bg_color = Color(0.20392157, 0.20392157, 0.20392157, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_d7nv3"]
 font_size = 120
 
 [node name="UpgragePanel" type="Panel"]
-self_modulate = Color(0.3254902, 0.3254902, 0.3254902, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2lim5")
 script = ExtResource("1_185hp")
 upgrade_list = Array[ExtResource("2_7oj0a")]([ExtResource("3_23hmp"), ExtResource("4_2lim5"), ExtResource("5_mur8r"), ExtResource("6_7qdmv"), ExtResource("5_2sak2"), ExtResource("8_jnis0"), ExtResource("4_utut4"), ExtResource("10_rbeyw"), ExtResource("11_bhom3"), ExtResource("12_q066v"), ExtResource("9_fi4vm"), ExtResource("14_nuqkt"), ExtResource("5_dherf"), ExtResource("16_dscdq"), ExtResource("13_t1op5"), ExtResource("18_ec832"), ExtResource("14_byxvg"), ExtResource("20_ses6g"), ExtResource("6_pyfvx"), ExtResource("16_3q48i"), ExtResource("23_s1xox"), ExtResource("17_5edr1"), ExtResource("25_f6p5g"), ExtResource("26_7rh71"), ExtResource("7_pth7g"), ExtResource("20_1akbe"), ExtResource("21_yuu21"), ExtResource("30_2sbjb"), ExtResource("8_8t41v"), ExtResource("32_0ki6v"), ExtResource("33_3t1bu"), ExtResource("25_7qdmv"), ExtResource("35_u8vra"), ExtResource("36_o18b3"), ExtResource("37_0ips3"), ExtResource("9_yhal4"), ExtResource("28_rbeyw"), ExtResource("40_dc8wg"), ExtResource("41_2b17u"), ExtResource("42_7ixpt"), ExtResource("10_d0ltd"), ExtResource("44_hbyl3"), ExtResource("32_nuqkt"), ExtResource("46_rt6n4"), ExtResource("33_dscdq"), ExtResource("34_ec832")])
 
