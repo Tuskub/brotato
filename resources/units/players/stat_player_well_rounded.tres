@@ -13,4 +13,5 @@ damage = 3
 damege_increase_pre_wave = 0.0
 luck = 0.0
 block_chance = 1.0
+harvesting = 5.0
 metadata/_custom_type_script = "uid://brjn3a1k336sd"
