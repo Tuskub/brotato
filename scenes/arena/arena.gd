@@ -10,7 +10,8 @@ class_name Arena
 @onready var wave_index_label: Label = %WaveIndexLabel
 @onready var wave_time_label: Label = %WaveTimeLabel
 @onready var spawner: Spawner = $Spawner
-@onready var upgrage_panel: UpgradePanel = $GameUI/UpgragePanel
+@onready var upgrage_panel: UpgradePanel = %UpgragePanel
+@onready var shop_panel: ShopPanel = %ShopPanel
 
 func _ready() -> void:
 	Global.player = player
@@ -18,11 +19,14 @@ func _ready() -> void:
 	Global.on_create_damage_text.connect(_on_create_damage_text)
 	Global.on_upgrade_selected.connect(_on_upgrade_selected)
 	Global.on_create_heal_text.connect(_on_create_heal_text)
+
 	spawner.start_wave()
-	
+
+
 func _on_upgrade_selected() -> void:
 	upgrage_panel.hide()
-	start_new_wave()
+	shop_panel.load_shop(spawner.wave_index)
+	shop_panel.show()
 
 func _process(delta: float) -> void:
 	if Global.game_paused:
@@ -70,3 +74,8 @@ func _on_spawner_on_wave_complited() -> void:
 		return
 	await get_tree().create_timer(1.0).timeout
 	show_upgrades()
+
+
+func _on_shop_panel_on_shop_next_wave() -> void:
+	shop_panel.hide()
+	start_new_wave()

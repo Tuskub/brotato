@@ -13,6 +13,12 @@ enum UpgradeTier {
 	LEGENDARY
 }
 
+const SHOP_PRPBABILITY_CONFIG = {
+	"rare": { "start_wave": 2, 'base_multi': 0.10 },
+	"epic": { "start_wave": 4, 'base_multi': 0.06 },
+	"legendary": { "start_wave": 7, 'base_multi': 0.01 },
+}
+
 const UPGRADE_PRPBABILITY_CONFIG = {
 	"rare": { "start_wave": 2, 'base_multi': 0.06 },
 	"epic": { "start_wave": 4, 'base_multi': 0.02 },

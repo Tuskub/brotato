@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy355015qgab6"]
+[gd_scene load_steps=13 format=3 uid="uid://dy355015qgab6"]
 
 [ext_resource type="Texture2D" uid="uid://cy4xfx762bxgb" path="res://assets/sprites/BG.png" id="1_5tue2"]
 [ext_resource type="Script" uid="uid://capwpqteppe4m" path="res://scenes/arena/arena.gd" id="1_asdgj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://docfda4j2kr0p" path="res://scenes/arena/spawner.gd" id="8_ii07k"]
 [ext_resource type="Script" uid="uid://dqhoumuppl4bx" path="res://resources/waves/wave_data.gd" id="9_2ml6w"]
 [ext_resource type="PackedScene" uid="uid://pu5olhov62fd" path="res://scenes/ui/upgrade_panel/upgrage_panel.tscn" id="9_6w4xk"]
+[ext_resource type="PackedScene" uid="uid://bj5t1c2y8k7q0" path="res://scenes/ui/shop_panel/shop_panel.tscn" id="10_2ml6w"]
 [ext_resource type="Resource" uid="uid://cer6rdmxrnenh" path="res://resources/waves/data/wave_1_to_5.tres" id="10_xgbxb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ml6w"]
@@ -77,8 +78,14 @@ label_settings = SubResource("LabelSettings_xgbxb")
 horizontal_alignment = 1
 
 [node name="UpgragePanel" parent="GameUI" instance=ExtResource("9_6w4xk")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ShopPanel" parent="GameUI" instance=ExtResource("10_2ml6w")]
+unique_name_in_owner = true
 visible = false
 
 [connection signal="on_wave_complited" from="Spawner" to="." method="_on_spawner_on_wave_complited"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Spawner/WaveTimer" to="Spawner" method="_on_wave_timer_timeout"]
+[connection signal="on_shop_next_wave" from="GameUI/ShopPanel" to="." method="_on_shop_panel_on_shop_next_wave"]
