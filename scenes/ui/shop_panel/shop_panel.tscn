@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bj5t1c2y8k7q0"]
+[gd_scene load_steps=57 format=3 uid="uid://bj5t1c2y8k7q0"]
 
 [ext_resource type="Script" uid="uid://cnljeaqmekskg" path="res://scenes/ui/shop_panel/shop_panel.gd" id="1_chkkr"]
 [ext_resource type="Script" uid="uid://d3uscgsoevue7" path="res://resources/items/item_base.gd" id="2_pk1f0"]
@@ -49,6 +49,7 @@
 [ext_resource type="Resource" uid="uid://duxfju4a7hr4h" path="res://resources/items/weapons/melee/wand/item_wand_2.tres" id="44_im8v7"]
 [ext_resource type="Resource" uid="uid://ivjlujw5hmhw" path="res://resources/items/weapons/melee/wand/item_wand_3.tres" id="45_1oasg"]
 [ext_resource type="Resource" uid="uid://dcpbtbw3kvxqm" path="res://resources/items/weapons/melee/wand/item_wand_4.tres" id="46_hx4qp"]
+[ext_resource type="PackedScene" uid="uid://jo7b40q6dpjw" path="res://scenes/ui/item_card/item_card.tscn" id="49_kche8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chkkr"]
 bg_color = Color(0.20392157, 0.20392157, 0.20392157, 1)
@@ -166,10 +167,8 @@ theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 8
 
-[node name="ItemCard" type="Button" parent="MarginContainer/Control/Passives/PassivesContainer"]
-custom_minimum_size = Vector2(80, 80)
+[node name="ItemCard" parent="MarginContainer/Control/Passives/PassivesContainer" instance=ExtResource("49_kche8")]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("4_o7w7v")
 
 [node name="ItemCard2" type="Button" parent="MarginContainer/Control/Passives/PassivesContainer"]
 custom_minimum_size = Vector2(80, 80)

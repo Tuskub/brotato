@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy355015qgab6"]
+[gd_scene load_steps=14 format=3 uid="uid://dy355015qgab6"]
 
 [ext_resource type="Texture2D" uid="uid://cy4xfx762bxgb" path="res://assets/sprites/BG.png" id="1_5tue2"]
 [ext_resource type="Script" uid="uid://capwpqteppe4m" path="res://scenes/arena/arena.gd" id="1_asdgj"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://pu5olhov62fd" path="res://scenes/ui/upgrade_panel/upgrage_panel.tscn" id="9_6w4xk"]
 [ext_resource type="PackedScene" uid="uid://bj5t1c2y8k7q0" path="res://scenes/ui/shop_panel/shop_panel.tscn" id="10_2ml6w"]
 [ext_resource type="Resource" uid="uid://cer6rdmxrnenh" path="res://resources/waves/data/wave_1_to_5.tres" id="10_xgbxb"]
+[ext_resource type="PackedScene" uid="uid://cg7dbioglwoqe" path="res://scenes/ui/coins_bag/coins_bag.tscn" id="11_xgbxb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ml6w"]
 font_size = 64
@@ -84,6 +85,9 @@ visible = false
 [node name="ShopPanel" parent="GameUI" instance=ExtResource("10_2ml6w")]
 unique_name_in_owner = true
 visible = false
+
+[node name="CoinsBag" parent="GameUI" instance=ExtResource("11_xgbxb")]
+unique_name_in_owner = true
 
 [connection signal="on_wave_complited" from="Spawner" to="." method="_on_spawner_on_wave_complited"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

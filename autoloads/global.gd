@@ -5,6 +5,7 @@ signal on_create_damage_text(unit: Node2D, hitbox: HitboxComponent)
 signal on_create_heal_text(unit: Node2D, heal: float)
 
 signal on_upgrade_selected
+signal on_enemy_died(emeny: Enemy)
 
 enum UpgradeTier {
 	COMMON,
@@ -36,6 +37,8 @@ const COMMON_STYLE = preload("uid://dt8ypn0hibm80")
 const EPIC_STYLE = preload("uid://ccifgx30nsp4h")
 const LEGENDARY_STYLE = preload("uid://dnnhiwx3gx5h0")
 const RARE_STYLE = preload("uid://ici2d08626ar")
+
+const COINS_SCENE = preload("uid://b00ep0bndm7sr")
 
 func get_harvesting_coins() -> void:
 	coins += player.stats.harvesting
