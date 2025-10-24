@@ -1,6 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcc7rsdy4j8v6"]
+[gd_scene load_steps=5 format=3 uid="uid://dcc7rsdy4j8v6"]
 
 [ext_resource type="Script" uid="uid://dgfqccd8l8c6d" path="res://scenes/weapons/weapon.gd" id="1_v4xn6"]
+[ext_resource type="Shader" uid="uid://83ct6qoev7sr" path="res://shaders/outline.gdshader" id="2_omet7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvw4m"]
+resource_local_to_scene = true
+shader = ExtResource("2_omet7")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 8.00000038
+shader_parameter/glow_intensity = 4.00000019
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vffjk"]
 radius = 150.0
@@ -10,6 +18,7 @@ script = ExtResource("1_v4xn6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
+material = SubResource("ShaderMaterial_uvw4m")
 scale = Vector2(0.5, 0.5)
 
 [node name="RangeArea" type="Area2D" parent="."]
