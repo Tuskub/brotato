@@ -26,11 +26,6 @@ func _ready() -> void:
 	dash_cooldown_timer.one_shot = true
 	dash_cooldown_timer.wait_time = dash_cooldown
 	
-	#add_weapon(preload("uid://imimryc45lel"))
-	#add_weapon(preload("uid://xa5yx3ou1hck"))
-	#add_weapon(preload("uid://4sxp5j11l8yy"))
-	add_weapon(preload("uid://d2iqgdh5dol7e"))
-
 
 func _process(delta: float) -> void:
 	if Global.game_paused:

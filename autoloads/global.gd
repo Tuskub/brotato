@@ -28,7 +28,11 @@ const UPGRADE_PRPBABILITY_CONFIG = {
 
 var player: Player
 var game_paused := false
-var coins: int
+var coins := 20
+
+var selected_weapon: ItemWeapon
+
+var equipped_weapons: Array[ItemWeapon]
 
 const FLASH_MATERIAL = preload("uid://x4frie3idpxo")
 const FLOATING_TEXT_SCENE = preload("uid://qkwyrg22h3gi")
@@ -39,9 +43,10 @@ const LEGENDARY_STYLE = preload("uid://dnnhiwx3gx5h0")
 const RARE_STYLE = preload("uid://ici2d08626ar")
 
 const COINS_SCENE = preload("uid://b00ep0bndm7sr")
+const ITEM_CARD_SCENE = preload("uid://jo7b40q6dpjw")
 
 func get_harvesting_coins() -> void:
-	coins += player.stats.harvesting
+	coins += int(player.stats.harvesting)
 	
 
 func get_chance_succes(chance: float) -> bool:

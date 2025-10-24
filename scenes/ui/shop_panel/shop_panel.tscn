@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bj5t1c2y8k7q0"]
+[gd_scene load_steps=61 format=3 uid="uid://bj5t1c2y8k7q0"]
 
 [ext_resource type="Script" uid="uid://cnljeaqmekskg" path="res://scenes/ui/shop_panel/shop_panel.gd" id="1_chkkr"]
 [ext_resource type="Script" uid="uid://d3uscgsoevue7" path="res://resources/items/item_base.gd" id="2_pk1f0"]
@@ -49,7 +49,11 @@
 [ext_resource type="Resource" uid="uid://duxfju4a7hr4h" path="res://resources/items/weapons/melee/wand/item_wand_2.tres" id="44_im8v7"]
 [ext_resource type="Resource" uid="uid://ivjlujw5hmhw" path="res://resources/items/weapons/melee/wand/item_wand_3.tres" id="45_1oasg"]
 [ext_resource type="Resource" uid="uid://dcpbtbw3kvxqm" path="res://resources/items/weapons/melee/wand/item_wand_4.tres" id="46_hx4qp"]
+[ext_resource type="Resource" uid="uid://ykf2u0vmvag4" path="res://resources/items/passives/data/passive_cape.tres" id="47_y7i7l"]
+[ext_resource type="Resource" uid="uid://b8v2ibilqkxsj" path="res://resources/items/passives/data/passive_mighty_sword.tres" id="48_fjngo"]
+[ext_resource type="Resource" uid="uid://dyjtkfqatfvpq" path="res://resources/items/passives/data/passive_power_ball.tres" id="49_5i27n"]
 [ext_resource type="PackedScene" uid="uid://jo7b40q6dpjw" path="res://scenes/ui/item_card/item_card.tscn" id="49_kche8"]
+[ext_resource type="Resource" uid="uid://dxl0423ueqprc" path="res://resources/items/passives/data/passive_rage.tres" id="50_k3s3w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chkkr"]
 bg_color = Color(0.20392157, 0.20392157, 0.20392157, 1)
@@ -89,7 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_chkkr")
 script = ExtResource("1_chkkr")
-shop_items = Array[ExtResource("2_pk1f0")]([ExtResource("3_kche8"), ExtResource("4_rqkor"), ExtResource("5_xnsbf"), ExtResource("6_xbu4e"), ExtResource("7_y7i7l"), ExtResource("8_fjngo"), ExtResource("9_5i27n"), ExtResource("10_k3s3w"), ExtResource("11_2vdj1"), ExtResource("12_ihhbf"), ExtResource("13_53gyu"), ExtResource("14_n11x8"), ExtResource("15_lbitd"), ExtResource("16_opy2p"), ExtResource("17_gagqw"), ExtResource("18_g1acl"), ExtResource("19_c0evr"), ExtResource("20_a7jr8"), ExtResource("21_wulif"), ExtResource("22_untf5"), ExtResource("23_krbbd"), ExtResource("24_8ixtr"), ExtResource("25_hqsig"), ExtResource("26_uajrh"), ExtResource("27_v2hjx"), ExtResource("28_x7akd"), ExtResource("29_8rj52"), ExtResource("30_i7qex"), ExtResource("31_5m0on"), ExtResource("32_tgups"), ExtResource("33_6y4td"), ExtResource("34_5x65n"), ExtResource("35_y60t3"), ExtResource("36_2a2sb"), ExtResource("37_0sk5k"), ExtResource("38_nwqyi"), ExtResource("39_jn76n"), ExtResource("40_boajf"), ExtResource("41_egjfh"), ExtResource("42_8bxa0"), ExtResource("43_bg42t"), ExtResource("44_im8v7"), ExtResource("45_1oasg"), ExtResource("46_hx4qp")])
+shop_items = Array[ExtResource("2_pk1f0")]([ExtResource("3_kche8"), ExtResource("4_rqkor"), ExtResource("5_xnsbf"), ExtResource("6_xbu4e"), ExtResource("7_y7i7l"), ExtResource("8_fjngo"), ExtResource("9_5i27n"), ExtResource("10_k3s3w"), ExtResource("11_2vdj1"), ExtResource("12_ihhbf"), ExtResource("13_53gyu"), ExtResource("14_n11x8"), ExtResource("15_lbitd"), ExtResource("16_opy2p"), ExtResource("17_gagqw"), ExtResource("18_g1acl"), ExtResource("19_c0evr"), ExtResource("20_a7jr8"), ExtResource("21_wulif"), ExtResource("22_untf5"), ExtResource("23_krbbd"), ExtResource("24_8ixtr"), ExtResource("25_hqsig"), ExtResource("26_uajrh"), ExtResource("27_v2hjx"), ExtResource("28_x7akd"), ExtResource("29_8rj52"), ExtResource("30_i7qex"), ExtResource("31_5m0on"), ExtResource("32_tgups"), ExtResource("33_6y4td"), ExtResource("34_5x65n"), ExtResource("35_y60t3"), ExtResource("36_2a2sb"), ExtResource("37_0sk5k"), ExtResource("38_nwqyi"), ExtResource("39_jn76n"), ExtResource("40_boajf"), ExtResource("41_egjfh"), ExtResource("42_8bxa0"), ExtResource("43_bg42t"), ExtResource("44_im8v7"), ExtResource("45_1oasg"), ExtResource("46_hx4qp"), ExtResource("47_y7i7l"), ExtResource("48_fjngo"), ExtResource("49_5i27n"), ExtResource("50_k3s3w")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -316,6 +320,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_whl1y")
 text = "Next Wave"
 
 [node name="CombineButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_o7w7v")
@@ -328,3 +333,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_1gnn5")
 text = "Sell"
 
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/NewWaveButton" to="." method="_on_new_wave_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/CombineButton" to="." method="_on_combine_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/SellButton" to="." method="_on_sell_button_pressed"]
