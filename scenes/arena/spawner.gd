@@ -6,6 +6,11 @@ signal on_wave_complited
 @export var spawn_area_size := Vector2(1000, 500)
 @export var wave_data: Array[WaveDate]
 @export var enemy_collection: Array[UnitStats]
+@export_group("Endless")
+## Spawn time is multiplied by (1 - this) for every wave past the last defined WaveDate.
+@export_range(0.0, 1.0) var endless_spawn_time_decrease := 0.05
+## Lower bound for the endless spawn time multiplier.
+@export_range(0.01, 1.0) var endless_min_spawn_multiplier := 0.25
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var wave_timer: Timer = $WaveTimer
@@ -19,7 +24,29 @@ func find_wave_data() -> WaveDate:
 		if wave and wave.is_valid_index(wave_index):
 			return wave
 	
-	return null
+	# Endless mode: past the last defined wave, keep reusing the last one
+	return get_last_wave_data()
+
+func get_last_wave_data() -> WaveDate:
+	var last_wave: WaveDate = null
+	for wave in wave_data:
+		if wave and (not last_wave or wave.to > last_wave.to):
+			last_wave = wave
+	
+	return last_wave
+
+func get_endless_wave_count() -> int:
+	var last_wave := get_last_wave_data()
+	if not last_wave:
+		return 0
+	return max(0, wave_index - last_wave.to)
+
+func is_endless_wave() -> bool:
+	return get_endless_wave_count() > 0
+
+func get_endless_spawn_multiplier() -> float:
+	var multiplier := pow(1.0 - endless_spawn_time_decrease, get_endless_wave_count())
+	return max(endless_min_spawn_multiplier, multiplier)
 	
 func set_spawn_timer() -> void:
 	match current_wave_data.spawn_type:
@@ -29,6 +56,8 @@ func set_spawn_timer() -> void:
 			var min_spawn_time := current_wave_data.min_spawn_time
 			var max_spawn_time := current_wave_data.max_spawn_time
 			spawn_timer.wait_time = randf_range(min_spawn_time, max_spawn_time)
+	
+	spawn_timer.wait_time *= get_endless_spawn_multiplier()
 	
 	if spawn_timer.is_stopped():
 		spawn_timer.start()
