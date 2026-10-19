@@ -39,6 +39,11 @@ func create_item_card() -> ItemCard:
 	item_card.on_item_card_selected.connect(_on_item_card_selected)
 	return item_card
 	
+func create_item_weapon(weapon: ItemWeapon) -> void:
+	var card := create_item_card()
+	weapons_container.add_child(card)
+	card.item = weapon
+	
 func _on_item_card_selected(card: ItemCard) -> void:
 	contecst_card = card
 	
@@ -72,10 +77,12 @@ func _on_item_purchased(item: ItemBase) -> void:
 	item_card.item = item
 
 func _on_new_wave_button_pressed() -> void:
+	SoundManager.play_sound(SoundManager.Sound.UI)
 	on_shop_next_wave.emit()
 
 
 func _on_combine_button_pressed() -> void:
+	SoundManager.play_sound(SoundManager.Sound.UI)
 	if not contecst_card: 
 		return
 	
@@ -117,6 +124,7 @@ func _on_combine_button_pressed() -> void:
 
 
 func _on_sell_button_pressed() -> void:
+	SoundManager.play_sound(SoundManager.Sound.UI)
 	if not contecst_card:
 		return
 	

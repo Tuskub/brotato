@@ -7,6 +7,7 @@ func execute_attack() -> void:
 	weapon.is_attacking = true
 	
 	crete_projectile()
+	SoundManager.play_sound(SoundManager.Sound.FIRE)
 	
 	var tween := create_tween()
 	var attack_pos := Vector2(weapon.attack_start_position.x - weapon.data.stats.recoil, weapon.attack_start_position.y)

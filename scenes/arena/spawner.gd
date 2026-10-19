@@ -41,17 +41,27 @@ func get_rand_spawn_pos() -> Vector2:
 func spawn_enemy() -> void:
 	var enemy_scene := current_wave_data.get_rand_unit_scene() as PackedScene
 	if enemy_scene:
+		var spawn_pos := get_rand_spawn_pos()
+		
+		var spawn_anim := Global.ENEMY_SPAWN_EFFECT_SCENE.instantiate()
+		get_parent().add_child(spawn_anim)
+		spawn_anim.global_position = spawn_pos
+		set_spawn_timer()
+		await spawn_anim.animation_player.animation_finished
+		spawn_anim.queue_free()
+		
 		var enemy_instance := enemy_scene.instantiate() as Enemy
-		enemy_instance.global_position = get_rand_spawn_pos()
+		enemy_instance.global_position = spawn_pos
 		get_parent().add_child(enemy_instance)
 		spawned_enemies.append(enemy_instance)
 		
-	set_spawn_timer()
+
 
 func udpates_enemies_new_wave() -> void:
 	for stat: UnitStats in enemy_collection:
-		stat.health += stat.health_increase_pre_wave
+		stat.health += int(stat.health_increase_pre_wave)
 		stat.damage += stat.damege_increase_pre_wave
+		print('stat %s', [stat])
 
 func clear_enemies() -> void:
 	if spawned_enemies.size() > 0:
@@ -69,6 +79,10 @@ func start_wave() -> void:
 		wave_timer.stop()
 		return
 	
+	#enemy_collection = []
+	#for unit: WaveUnitData in current_wave_data.units:
+		#var enemy := unit.unit_scene
+		#enemy_collection.append(enemy)
 	wave_timer.wait_time = current_wave_data.wave_time
 	wave_timer.start()
 	

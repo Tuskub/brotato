@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy355015qgab6"]
+[gd_scene load_steps=15 format=3 uid="uid://dy355015qgab6"]
 
 [ext_resource type="Texture2D" uid="uid://cy4xfx762bxgb" path="res://assets/sprites/BG.png" id="1_5tue2"]
 [ext_resource type="Script" uid="uid://capwpqteppe4m" path="res://scenes/arena/arena.gd" id="1_asdgj"]
 [ext_resource type="Texture2D" uid="uid://ov4fmsbglo55" path="res://assets/sprites/Map.png" id="2_aj7ud"]
-[ext_resource type="PackedScene" uid="uid://jadv5cnwph1c" path="res://scenes/units/players/player_well_rounded.tscn" id="3_asdgj"]
 [ext_resource type="Script" uid="uid://c5s13p4g2x11f" path="res://scenes/arena/camera_2d.gd" id="4_aj7ud"]
 [ext_resource type="Script" uid="uid://docfda4j2kr0p" path="res://scenes/arena/spawner.gd" id="8_ii07k"]
 [ext_resource type="Script" uid="uid://dqhoumuppl4bx" path="res://resources/waves/wave_data.gd" id="9_2ml6w"]
@@ -11,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bj5t1c2y8k7q0" path="res://scenes/ui/shop_panel/shop_panel.tscn" id="10_2ml6w"]
 [ext_resource type="Resource" uid="uid://cer6rdmxrnenh" path="res://resources/waves/data/wave_1_to_5.tres" id="10_xgbxb"]
 [ext_resource type="PackedScene" uid="uid://cg7dbioglwoqe" path="res://scenes/ui/coins_bag/coins_bag.tscn" id="11_xgbxb"]
+[ext_resource type="AudioStream" uid="uid://prc8bub0x4s1" path="res://assets/audio/Bg Music.mp3" id="12_s83md"]
+[ext_resource type="PackedScene" uid="uid://neajclhqrnnp" path="res://scenes/ui/selection_panel/selection_panel.tscn" id="12_vmsrg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ml6w"]
 font_size = 64
@@ -18,13 +19,13 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_xgbxb"]
 font_size = 64
 
-[node name="Arena" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="Arena" type="Node2D" groups=["arena"]]
 script = ExtResource("1_asdgj")
-player = NodePath("PlayerWellRounded")
 normal_color = Color(1, 1, 1, 1)
 block_color = Color(1, 0.2901961, 0.45490196, 1)
 critical_color = Color(0.99607843, 0.78039217, 0.38039216, 1)
 hp_color = Color(0, 0.627451, 0.48235294, 1)
+use_save_data = true
 
 [node name="BlackBG" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -33,8 +34,6 @@ texture = ExtResource("1_5tue2")
 [node name="GrassBG" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_aj7ud")
-
-[node name="PlayerWellRounded" parent="." instance=ExtResource("3_asdgj")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("4_aj7ud")
@@ -89,7 +88,17 @@ visible = false
 [node name="CoinsBag" parent="GameUI" instance=ExtResource("11_xgbxb")]
 unique_name_in_owner = true
 
+[node name="SelectionPanel" parent="GameUI" instance=ExtResource("12_vmsrg")]
+unique_name_in_owner = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_s83md")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
 [connection signal="on_wave_complited" from="Spawner" to="." method="_on_spawner_on_wave_complited"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Spawner/WaveTimer" to="Spawner" method="_on_wave_timer_timeout"]
 [connection signal="on_shop_next_wave" from="GameUI/ShopPanel" to="." method="_on_shop_panel_on_shop_next_wave"]
+[connection signal="on_selection_complited" from="GameUI/SelectionPanel" to="." method="_on_selection_panel_on_selection_complited"]

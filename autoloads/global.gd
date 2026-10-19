@@ -32,13 +32,22 @@ const UPGRADE_PRPBABILITY_CONFIG = {
 	"legendary": { "start_wave": 7, 'base_multi': 0.0023 },
 }
 
+var available_player: Dictionary[String, PackedScene] = {
+	"Brawler": preload("uid://nk87ujktnw1c"),
+	"Bunny": preload("uid://by1lqht47vkds"),
+	"Crazy": preload("uid://bsxha0eaawok4"),
+	"Knight": preload("uid://dlxdaijg5gkku"),
+	"Well Rounded": preload("uid://jadv5cnwph1c"),
+}
+
 var player: Player
 var game_paused := false
 var coins := 20
 
-var selected_weapon: ItemWeapon
-
 var equipped_weapons: Array[ItemWeapon]
+
+var main_player_selected: UnitStats
+var main_weapon_selected: ItemWeapon
 
 const FLASH_MATERIAL = preload("uid://x4frie3idpxo")
 const FLOATING_TEXT_SCENE = preload("uid://qkwyrg22h3gi")
@@ -50,6 +59,15 @@ const RARE_STYLE = preload("uid://ici2d08626ar")
 
 const COINS_SCENE = preload("uid://b00ep0bndm7sr")
 const ITEM_CARD_SCENE = preload("uid://jo7b40q6dpjw")
+const SELECTION_CARD_SCENE = preload("uid://c0c53v7p12lwu")
+const ENEMY_SPAWN_EFFECT_SCENE = preload("uid://cvcrh2erbeae5")
+
+
+func get_selected_player() -> Player:
+	var player_scene := available_player[main_player_selected.name]
+	var player_instance := player_scene.instantiate()
+	player = player_instance
+	return player
 
 func get_harvesting_coins() -> void:
 	coins += int(player.stats.harvesting)

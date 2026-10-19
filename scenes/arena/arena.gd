@@ -1,11 +1,11 @@
 extends Node2D
 class_name Arena
 
-@export var player: Player
 @export var normal_color: Color
 @export var block_color: Color
 @export var critical_color: Color
 @export var hp_color: Color
+@export var use_save_data: bool
 
 @onready var wave_index_label: Label = %WaveIndexLabel
 @onready var wave_time_label: Label = %WaveTimeLabel
@@ -13,19 +13,45 @@ class_name Arena
 @onready var upgrage_panel: UpgradePanel = %UpgragePanel
 @onready var shop_panel: ShopPanel = %ShopPanel
 @onready var coins_bag: CoinsBag = %CoinsBag
+@onready var selection_panel: SelectionPanel = %SelectionPanel
 
 var gold_list : Array[Coins]
 
 func _ready() -> void:
-	Global.player = player
 	Global.on_create_block_text.connect(_on_create_block_text)
 	Global.on_create_damage_text.connect(_on_create_damage_text)
 	Global.on_upgrade_selected.connect(_on_upgrade_selected)
 	Global.on_create_heal_text.connect(_on_create_heal_text)
 	Global.on_enemy_died.connect(_on_enemy_died)
+	
+	if use_save_data:
+		ProgressData.load_game()
+		
+		if ProgressData.has_saved_game:
+			selection_panel.hide()
+			shop_panel.show()
+			
+			var player_scene := Global.available_player[ProgressData.current_player_name]
+			Global.player = player_scene.instantiate()
+			add_child(Global.player)
+			
+			for stat_name in ProgressData.player_stats:
+				Global.player.stats.set(stat_name, ProgressData.player_stats[stat_name])
+			
+			for weapon_data in Global.equipped_weapons:
+				Global.player.add_weapon(weapon_data)
 
-	spawner.start_wave()
+			for weapon_data in ProgressData.my_weapons:
+				shop_panel.create_item_weapon(weapon_data)
 
+			for passive_data in ProgressData.my_passives:
+				var item_card := shop_panel.create_item_card()
+				shop_panel.passives_container.add_child(item_card)
+				item_card.item = passive_data
+			
+			spawner.wave_index = ProgressData.current_wave
+			shop_panel.load_shop(spawner.wave_index)
+			Global.game_paused = true
 
 func _on_upgrade_selected() -> void:
 	upgrage_panel.hide()
@@ -54,6 +80,7 @@ func clean_arena() -> void:
 				gold_item.set_collection_target(target_center_pos)
 	
 	gold_list.clear()
+	spawner.clear_enemies()
 	
 func create_floating_text(unit: Node2D) -> FloatingText:
 	var instance := Global.FLOATING_TEXT_SCENE.instantiate() as FloatingText
@@ -111,3 +138,15 @@ func _on_enemy_died(enemy: Enemy) -> void:
 func _on_shop_panel_on_shop_next_wave() -> void:
 	shop_panel.hide()
 	start_new_wave()
+
+
+func _on_selection_panel_on_selection_complited() -> void:
+	var player := Global.get_selected_player()
+	add_child(player)
+	player.add_weapon(Global.main_weapon_selected)
+	shop_panel.create_item_weapon(Global.main_weapon_selected)
+	Global.equipped_weapons.append(Global.main_weapon_selected)
+	
+	spawner.start_wave()
+	Global.game_paused = false
+

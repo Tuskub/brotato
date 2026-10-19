@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://autoloads/global.gd"
+SoundManager="*res://autoloads/sound_manager.tscn"
+ProgressData="*res://autoloads/progress_data.gd"
 
 [display]
 
@@ -38,6 +40,10 @@ folder_colors={
 "res://scenes/units/": "orange",
 "res://scenes/weapons/": "blue"
 }
+
+[global_group]
+
+arena=""
 
 [gui]
 
