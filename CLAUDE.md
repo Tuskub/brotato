@@ -19,7 +19,7 @@ $GODOT --path . --headless --quit        # boot the main scene for one frame; pr
 $GODOT --path . --headless --export-release "macOS" ./brotato.dmg   # presets: "macOS", "Linux"
 ```
 
-The headless boot already prints many `invalid UID ... using text path instead` warnings and an exit-time leak warning, so only look for new errors. `export_presets.cfg` is gitignored. `brotato.dmg` is a build artifact and should not be committed.
+The headless boot already prints many `invalid UID ... using text path instead` warnings and an exit-time leak warning, so only look for new errors. `--headless --script foo.gd` does **not** load autoloads, so any script touching `Global` fails to compile there. To exercise game code headless, put a temporary `Node` scene with the script in the project root, run `$GODOT --path . --headless res://_tmp_check.tscn`, and delete it afterwards. `.claude/skills/add-enemy/` has a ready-made version of this. `export_presets.cfg` is gitignored. `brotato.dmg` is a build artifact and should not be committed.
 
 ## Architecture
 
@@ -31,7 +31,7 @@ The headless boot already prints many `invalid UID ... using text path instead` 
 ### Game loop (`scenes/arena/arena.gd` is the orchestrator)
 1. `SelectionPanel`: the player picks a character (`UnitStats`) and a starting weapon. Arena then instantiates the player scene from `Global.available_player[stats.name]`, so the stats `name` must match that dictionary key.
 2. `Spawner` runs a wave. It finds the `WaveDate` resource whose `from..to` range contains `wave_index`, then spawns weighted-random enemies (each spawn plays a spawn effect first) until `WaveTimer` ends.
-3. When the wave ends: `Global.game_paused = true`, harvesting coins are granted, and the enemy `UnitStats` in `enemy_collection` are **mutated in place** to scale for the next wave. Arena clears the arena (coins fly to the CoinsBag) and shows the `UpgradePanel`.
+3. When the wave ends: `Global.game_paused = true` and harvesting coins are granted. (At the start of every wave, `Spawner.scale_enemies_for_wave()` **mutates in place** the enemy `UnitStats` in `enemy_collection`, setting them to wave-1 values + `*_pre_wave` × (`wave_index` − 1). A new enemy stats resource must be added to `enemy_collection` in `arena.tscn` or it won't scale.) Arena clears the arena (coins fly to the CoinsBag) and shows the `UpgradePanel`.
 4. `UpgradePanel` → `Global.on_upgrade_selected` → `ShopPanel`. In the shop the player buys, sells and combines items. "Next wave" calls `Arena.start_new_wave()`.
 
 Pausing is a custom flag, not `get_tree().paused`. Every `_process` that should freeze checks `Global.game_paused` and returns early.
@@ -39,7 +39,7 @@ Pausing is a custom flag, not `get_tree().paused`. Every `_process` that should 
 ### Units and combat
 - `Unit` (`scenes/units/unit.gd`) is the base for `Player` and `Enemy`. It owns the `UnitStats` resource, a `HealthComponent`, the flash-on-hit material and the block roll.
 - Damage travels through `HitboxComponent` → `HurtboxComponent` area overlaps. The hitbox carries `damage`, `critical`, `knockback_power` and `source`. The hurtbox emits `on_damaged`, and `Unit._on_hurtbox_component_on_damaged` handles it. The physics layers are named in `project.godot` (Player, Enemy, HitboxEnemy, HurtboxEnemy, HitboxPlayer, HurtboxPlayer). Set the layers and masks correctly on new hitboxes and hurtboxes.
-- Enemy variants are scenes that add behavior child nodes, such as `ChargeBehavior` (`chanrge_behavior.gd`) and `shooting_behavior.gd`.
+- Every enemy scene inherits `enemies/enemy_base.tscn` (which inherits `unit.tscn` with `enemy.gd`, and has no stats or texture) and sets its own `stats` and `Visuals/Sprite` texture. Variants add behavior child nodes, such as `ChargeBehavior` (`chanrge_behavior.gd`) and `shooting_behavior.gd`. Behaviors must stop when `enemy.is_dead` or `Global.game_paused` is set. They pause movement through `enemy.can_move`. To add an enemy or a behavior, use the `add-enemy` skill (`.claude/skills/add-enemy/SKILL.md`).
 - Movement uses direct `position +=` updates, not physics bodies. The player is clamped to ±1000 x ±500, which matches `Spawner.spawn_area_size`.
 
 ### Weapons
