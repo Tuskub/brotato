@@ -6,6 +6,7 @@ class_name Enemy
 @onready var knockback_timer: Timer = $KnockbackTimer
 
 var can_move: bool = true
+var is_dead := false
 var knockback_direction: Vector2
 var knockback_power: float
 
@@ -25,6 +26,9 @@ func _process(delta: float) -> void:
 	update_rotation()
 	
 func destroy_enemy() -> void:
+	if is_dead:
+		return
+	is_dead = true
 	can_move = false
 	animation.play('die')
 	await animation.animation_finished
@@ -65,7 +69,8 @@ func update_rotation() -> void:
 	
 	var player_pos := Global.player.global_position
 	var moving_right := global_position.x < player_pos.x
-	visuals.scale = Vector2(-0.5, 0.5) if  moving_right else Vector2(0.5, 0.5)
+	var scale_x := absf(visuals.scale.x)
+	visuals.scale.x = -scale_x if moving_right else scale_x
 	
 func apply_knockback(dir: Vector2, power: float) -> void:
 	knockback_direction = dir
@@ -90,4 +95,6 @@ func _on_knockback_timer_timeout() -> void:
 
 
 func _on_health_component_on_unit_died() -> void:
+	is_dead = true
+	can_move = false
 	Global.on_enemy_died.emit(self)

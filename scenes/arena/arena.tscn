@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dy355015qgab6"]
+[gd_scene load_steps=22 format=3 uid="uid://dy355015qgab6"]
 
 [ext_resource type="Texture2D" uid="uid://cy4xfx762bxgb" path="res://assets/sprites/BG.png" id="1_5tue2"]
 [ext_resource type="Script" uid="uid://capwpqteppe4m" path="res://scenes/arena/arena.gd" id="1_asdgj"]
@@ -13,6 +13,12 @@
 [ext_resource type="AudioStream" uid="uid://prc8bub0x4s1" path="res://assets/audio/Bg Music.mp3" id="12_s83md"]
 [ext_resource type="PackedScene" uid="uid://neajclhqrnnp" path="res://scenes/ui/selection_panel/selection_panel.tscn" id="12_vmsrg"]
 [ext_resource type="PackedScene" path="res://scenes/ui/start_menu/start_menu.tscn" id="13_start"]
+[ext_resource type="Script" uid="uid://brjn3a1k336sd" path="res://resources/units/unit_stats.gd" id="14_ustats"]
+[ext_resource type="Resource" uid="uid://ckjfoti6xiyji" path="res://resources/units/enemies/stat_enemy_chaser_slow.tres" id="15_chaser_slow"]
+[ext_resource type="Resource" uid="uid://1xd321qgf1vb" path="res://resources/units/enemies/stat_enemy_chaser_mid.tres" id="16_chaser_mid"]
+[ext_resource type="Resource" uid="uid://mlvx6uebwl4x" path="res://resources/units/enemies/stat_enemy_chaser_fast.tres" id="17_chaser_fast"]
+[ext_resource type="Resource" uid="uid://clhs08eeatohp" path="res://resources/units/enemies/stat_enemy_charger.tres" id="18_charger"]
+[ext_resource type="Resource" uid="uid://beacl0wnixguy" path="res://resources/units/enemies/stat_enemy_shoter.tres" id="19_shoter"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ml6w"]
 font_size = 64
@@ -42,6 +48,7 @@ script = ExtResource("4_aj7ud")
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("8_ii07k")
 wave_data = Array[ExtResource("9_2ml6w")]([ExtResource("10_xgbxb")])
+enemy_collection = Array[ExtResource("14_ustats")]([ExtResource("15_chaser_slow"), ExtResource("16_chaser_mid"), ExtResource("17_chaser_fast"), ExtResource("18_charger"), ExtResource("19_shoter")])
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 one_shot = true

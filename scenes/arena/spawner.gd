@@ -18,6 +18,12 @@ signal on_wave_complited
 var wave_index := 1
 var current_wave_data: WaveDate
 var spawned_enemies: Array[Enemy]
+## Wave 1 health/damage of every UnitStats in enemy_collection, captured before any scaling.
+var enemy_base_stats: Dictionary[UnitStats, Dictionary] = {}
+
+func _ready() -> void:
+	for stat: UnitStats in enemy_collection:
+		enemy_base_stats[stat] = {"health": stat.health, "damage": stat.damage}
 
 func find_wave_data() -> WaveDate:
 	for wave in wave_data:
@@ -86,11 +92,13 @@ func spawn_enemy() -> void:
 		
 
 
-func udpates_enemies_new_wave() -> void:
+## Sets enemy stats from their wave 1 values, so it also works after loading a save mid-run.
+func scale_enemies_for_wave() -> void:
+	var waves_passed := wave_index - 1
 	for stat: UnitStats in enemy_collection:
-		stat.health += int(stat.health_increase_pre_wave)
-		stat.damage += stat.damege_increase_pre_wave
-		print('stat %s', [stat])
+		var base: Dictionary = enemy_base_stats[stat]
+		stat.health = base.health + int(stat.health_increase_pre_wave * waves_passed)
+		stat.damage = base.damage + stat.damege_increase_pre_wave * waves_passed
 
 func clear_enemies() -> void:
 	if spawned_enemies.size() > 0:
@@ -112,6 +120,7 @@ func start_wave() -> void:
 	#for unit: WaveUnitData in current_wave_data.units:
 		#var enemy := unit.unit_scene
 		#enemy_collection.append(enemy)
+	scale_enemies_for_wave()
 	wave_timer.wait_time = current_wave_data.wave_time
 	wave_timer.start()
 	
@@ -138,4 +147,3 @@ func _on_wave_timer_timeout() -> void:
 	clear_enemies()
 	Global.get_harvesting_coins()
 	Global.game_paused = true
-	udpates_enemies_new_wave()

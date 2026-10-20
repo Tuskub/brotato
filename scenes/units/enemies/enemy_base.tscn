@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://h4qyxvfputld"]
+
+[ext_resource type="PackedScene" uid="uid://xoi5bf006vpc" path="res://scenes/units/unit.tscn" id="1_1c4c5"]
+[ext_resource type="Script" uid="uid://37mmvysgo1tu" path="res://scenes/units/enemies/enemy.gd" id="2_uipox"]
+[ext_resource type="PackedScene" uid="uid://c0fyx8gj5uexl" path="res://scenes/components/hitbox_component.tscn" id="5_ebrsu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jxgyp"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a42d7"]
+radius = 150.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebrsu"]
+radius = 35.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_htoap"]
+radius = 37.0
+
+[node name="EnemyBase" instance=ExtResource("1_1c4c5")]
+collision_layer = 2
+script = ExtResource("2_uipox")
+flock_push = 20.0
+
+[node name="CollisionShape2D" parent="." index="1"]
+z_index = 1
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_jxgyp")
+debug_color = Color(0.882123, 0, 0.37315482, 0.41960785)
+
+[node name="VisionArea" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" index="0"]
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_a42d7")
+
+[node name="HurtboxComponent" parent="." index="4"]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_ebrsu")
+debug_color = Color(0.29181653, 0.61910075, 0.33997628, 0.41960785)
+
+[node name="HitboxComponent" parent="." index="5" instance=ExtResource("5_ebrsu")]
+collision_layer = 4
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_htoap")
+debug_color = Color(0.99400514, 0, 0.2360233, 0.41960785)
+
+[node name="HealthBar" parent="." index="7"]
+offset_left = -48.0
+offset_top = -92.0
+offset_right = 48.0
+offset_bottom = -72.0
+back_color = Color(0.015686275, 0.05490196, 0.16862746, 1)
+fill_color = Color(0.37254903, 0.5372549, 0.75686276, 1)
+
+[node name="KnockbackTimer" type="Timer" parent="." index="9"]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="on_unit_died" from="HealthComponent" to="." method="_on_health_component_on_unit_died"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

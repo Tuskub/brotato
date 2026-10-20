@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt0abjo0fjjcj"]
+[gd_scene load_steps=6 format=3 uid="uid://dt0abjo0fjjcj"]
 
-[ext_resource type="PackedScene" uid="uid://cwiud4jd3uiwc" path="res://scenes/units/enemies/enemy_chaser_slow.tscn" id="1_6hlb4"]
+[ext_resource type="PackedScene" uid="uid://h4qyxvfputld" path="res://scenes/units/enemies/enemy_base.tscn" id="1_6hlb4"]
 [ext_resource type="Texture2D" uid="uid://4mllmwdfhmce" path="res://assets/sprites/Enemies/Enemy_4.png" id="2_yhv5h"]
 [ext_resource type="Script" uid="uid://dw3y3s4xmj7mc" path="res://scenes/units/enemies/shooting_behavior.gd" id="3_8rsk1"]
 [ext_resource type="PackedScene" uid="uid://q6vcpbi8wuoa" path="res://scenes/weapons/projectiles/projectile_enemy.tscn" id="4_yhv5h"]
+[ext_resource type="Resource" uid="uid://beacl0wnixguy" path="res://resources/units/enemies/stat_enemy_shoter.tres" id="5_stats"]
 
 [node name="EnemyShooter" instance=ExtResource("1_6hlb4")]
+stats = ExtResource("5_stats")
 
 [node name="Sprite" parent="Visuals" index="1"]
 texture = ExtResource("2_yhv5h")

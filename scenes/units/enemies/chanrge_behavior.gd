@@ -15,7 +15,10 @@ func _ready() -> void:
 	current_cooldonw = cooldown
 
 func _process(delta: float) -> void:
-	if enemy == null:
+	if Global.game_paused:
+		return
+
+	if enemy == null or enemy.is_dead:
 		return
 	
 	if is_charging:
@@ -36,6 +39,8 @@ func  start_charge() -> void:
 	enemy.can_move = false
 	anim_effects.play('charge')
 	await anim_effects.animation_finished
+	if enemy.is_dead:
+		return
 	is_charging = true
 
 
