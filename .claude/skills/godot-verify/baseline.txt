@@ -1,0 +1,8 @@
+# Pre-existing reference errors in this repo, accepted so that check_refs.py / verify.sh
+# only fail on NEW problems. Format: "<res:// file>: <message>" exactly as check_refs prints it.
+# Remove a line once the underlying file is fixed (check_refs reports stale lines as INFO).
+
+# Mace I: path says stats_mace_1.tres, uid is stats_mece_1.tres. Godot loads stats_mece_1.tres
+# (damage 10, cooldown 2.0); stats_mace_1.tres is an orphan with damage 1.0. Fixing only the uid
+# would silently nerf Mace I.
+res://resources/items/weapons/melee/mace/item_mace_1.tres: uid uid://d0gevuo634gkv belongs to res://resources/items/weapons/melee/mace/stats_mece_1.tres but path says res://resources/items/weapons/melee/mace/stats_mace_1.tres (Godot loads the uid's file)
