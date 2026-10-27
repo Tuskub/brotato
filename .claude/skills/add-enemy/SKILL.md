@@ -134,19 +134,13 @@ Weights are relative within one `WaveDate` (currently slow 6, mid 3, fast 1). Wa
 
 ## Hand-editing scenes
 
-Prefer the editor. When writing `.tscn`/`.tres` by hand, a new file needs a fresh UID (charset `a-z0-7`, from Godot's base-34 encoding):
+Prefer the editor. When writing `.tscn`/`.tres` by hand, a new file needs a fresh UID (Godot's base-34 encoding, charset `a-y0-8`). Generate it with the `godot-scene-editing` skill's helper, which also checks that the UID is unused in the project:
 
 ```sh
-python3 -I -c "
-import secrets
-i=secrets.randbits(63); s=''
-while True:
-    c=i%34; s+=chr(97+c) if c<26 else chr(48+c-26); i//=34
-    if not i: break
-print('uid://'+s[::-1])"
+python3 -I .claude/skills/godot-scene-editing/new_uid.py 2     # e.g. one for the stats .tres, one for the scene
 ```
 
-`grep -rn "<uid>" .` should find nothing before you use it. `ext_resource` ids are arbitrary strings that are unique within the file.
+`ext_resource` ids are arbitrary strings that are unique within the file. See `.claude/skills/godot-scene-editing/SKILL.md` for the full hand-editing rules.
 
 ## 5. Verify
 
@@ -166,5 +160,7 @@ rm -f _tmp_check.gd _tmp_check.gd.uid _tmp_check.tscn
 ```
 
 It prints every `enemy_*.tscn` with its stats, HP, texture and children, plus the Spawner's scaled stats for waves 1, 2 and 5. Check that the new enemy has its own stats name and texture, its behavior nodes, and that it appears in the scaling list. Run Godot in the background with a time cap if it might hang.
+
+Then run the project-wide check: `.claude/skills/godot-verify/verify.sh` (see the `godot-verify` skill).
 
 Finally, tell the user to open the new scene once in the editor (the inherited-scene tree should look right) and playtest it. Behaviors can't be verified headless.
